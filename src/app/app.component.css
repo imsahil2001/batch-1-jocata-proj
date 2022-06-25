@@ -1,0 +1,161 @@
+
+.main_container{
+   width: 100%;
+   padding-left: 3rem;
+   padding-right: 3rem;
+}
+
+.form_container{
+   margin-top: 1rem;
+   width: 100%;
+   margin: 0 auto;
+}
+
+table{
+   /* background: red; */
+   width: 100%;
+   margin: 0 auto;
+   border-spacing: 10px;
+   
+}
+
+table ,td,th{
+   
+}
+
+.borderred_table{
+   border-collapse: collapse;
+   border: 1px solid rgb(167, 167, 167);
+}
+
+
+.form_container h3{
+   text-transform: uppercase;
+   background: rgb(233, 233, 233);
+   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   padding-top:.2rem;
+   padding-left:.5rem;
+   padding-bottom:.2rem;
+   font-weight: 600;
+   font-size: 1rem;
+   margin-bottom: 1rem;
+}
+
+.input_box{
+   position:relative;
+   margin-bottom:1rem;
+   margin-top:1rem;
+}
+
+.input_box label{
+   position: absolute;
+   color: rgb(94, 94, 94);
+   top: 0;
+   left: 0;
+   pointer-events: none;
+   transition: .3s;
+   font-size:15px;
+}
+
+.input_box input{
+   border: none;
+   outline: none;
+   border-bottom: 1px solid rgb(94, 94, 94);
+   width: 100%;
+}
+
+
+.input_box input:focus ~ label,
+.input_box input:valid ~ label
+{
+   top: -18px;
+   left: 0;
+   color: rgb(100, 100, 213);
+   font-size: 12px;
+}
+
+
+.input_box .select{
+   width: 100%;
+   border: none;
+   border-bottom: 1px solid gray;
+   outline: none;
+   color: gray;
+}
+
+.date-label{
+   top: -18px !important;
+}
+
+
+.form_container{
+   margin-bottom: 1rem;
+}
+
+
+
+.borderred_table tr th{
+   padding:.5rem;
+   text-transform: uppercase;
+}
+
+.borderred_table tr td{
+   padding:.5rem;
+   padding-bottom: .2rem;
+}
+
+.borderred_table tr td .input_box input{
+   width: 100%;
+}
+
+.checkbox_container{
+   margin-top: .5rem;
+}
+
+.checkbox_container h3{
+   text-transform: uppercase;
+   background: rgb(233, 233, 233);
+   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   padding-top:.2rem;
+   padding-left:.5rem;
+   padding-bottom:.2rem;
+   font-weight: 600;
+   font-size: 1rem;
+   margin-bottom: 1rem;
+}
+
+.checkbox_container p{
+   margin-bottom: .5rem;
+}
+
+
+/* -------------Buttons------------- */
+
+.button-container{
+   margin-bottom: 1rem;
+}
+
+.right-buttons{
+   float: right;
+   display: inline-block;
+}
+
+.outline-btn{
+   padding:.8rem;
+   padding-left: 1.5rem;
+   padding-right: 1.5rem;
+   color: rgb(82, 177, 255);
+   background: none;
+   text-transform: uppercase;
+   border: 2px solid rgb(82, 177, 255);
+}
+
+.filled-btn{
+   border: none;
+   padding:.8rem;
+   padding-left: 1.5rem;
+   padding-right: 1.5rem;
+   color:white;
+   text-transform: uppercase;
+   background: rgb(82, 177, 255);
+}
