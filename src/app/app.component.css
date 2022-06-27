@@ -43,7 +43,7 @@ table ,td,th{
 
 .input_box{
    position:relative;
-   margin-bottom:1rem;
+   margin-bottom: 1.25rem;
    margin-top:1rem;
 }
 
@@ -133,6 +133,7 @@ table ,td,th{
 
 .button-container{
    margin-bottom: 1rem;
+   height: 3rem !important;
 }
 
 .right-buttons{
@@ -148,6 +149,7 @@ table ,td,th{
    background: none;
    text-transform: uppercase;
    border: 2px solid rgb(82, 177, 255);
+   cursor: pointer;
 }
 
 .filled-btn{
@@ -158,4 +160,10 @@ table ,td,th{
    color:white;
    text-transform: uppercase;
    background: rgb(82, 177, 255);
+   cursor: pointer;
+}
+
+.validation_popup{
+   position: absolute;
+   color: red;
 }
