@@ -1,4 +1,6 @@
+<form [formGroup]="myReactiveForm">
 <div class="main_container">
+<<<<<<< HEAD
   <form action="">
     <div class="form_container">
       <h3>Personal Information</h3>
@@ -55,6 +57,622 @@
           </td>
         </tr>
       </table>
+=======
+  <div class="form_container">
+    <h3>Personal Information</h3>
+    <table class="borderless_table">
+      <tr>
+        <td>
+          <div class="input_box">
+            <input  formControlName="name" type="text" id="username" required />
+            <div *ngIf="!myReactiveForm.get('name').valid && !myReactiveForm.get('name').untouched">Please enter valid input</div>
+            <label for=""> First Name </label>
+          </div>
+        </td>
+        <td>
+          <div class="input_box">
+            <input type="text" required />
+            <label for=""> Middle Name </label>
+          </div>
+        </td>
+
+        <td>
+          <div class="input_box">
+            <input type="text" required />
+            <label for=""> Last Name </label>
+          </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <div class="input_box">
+            <input type="date" required />
+            <label for="" class="date-label"> Date of Birth(Dob) </label>
+          </div>
+        </td>
+        <td>
+          <div class="input_box">
+            <input type="number" required />
+            <label for=""> Phone Number </label>
+          </div>
+        </td>
+        <td>
+          <div class="input_box">
+            <input type="text" required />
+            <label for=""> Martial Status </label>
+          </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <div class="input_box">
+            <input type="email" required />
+            <label for=""> Email Address </label>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="form_container">
+    <h3>CURRENT ADDRESS</h3>
+    <table class="borderless_table">
+      <tr>
+        <td>
+          <div class="input_box">
+            <input type="text" required />
+            <label for=""> Address 1 </label>
+          </div>
+        </td>
+        <td>
+          <div class="input_box">
+            <input type="text" required />
+            <label for=""> Address 2 </label>
+          </div>
+        </td>
+
+        <td>
+          <div class="input_box">
+            <input type="text" required />
+            <label for=""> State </label>
+          </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <div class="input_box">
+            <input type="text" required />
+            <label for=""> City </label>
+          </div>
+        </td>
+        <td>
+          <div class="input_box">
+            <input type="number" required />
+            <label for=""> Pincode </label>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="form_container">
+    <h3>PERMANENT ADDRESS</h3>
+    <table class="borderless_table">
+      <tr>
+        <td>
+          <div class="input_box">
+            <input type="text" required />
+            <label for=""> Address 1 </label>
+          </div>
+        </td>
+        <td>
+          <div class="input_box">
+            <input type="text" required />
+            <label for=""> Address 2 </label>
+          </div>
+        </td>
+
+        <td>
+          <div class="input_box">
+            <input type="text" required />
+            <label for=""> State </label>
+          </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <div class="input_box">
+            <input type="text" required />
+            <label for=""> City </label>
+          </div>
+        </td>
+        <td>
+          <div class="input_box">
+            <input type="number" required />
+            <label for=""> Pincode </label>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="form_container">
+    <h3>EMERGENCY CONTACT DETAILS</h3>
+    <p>
+      <input type="checkbox" name="emergency_checkbox" /> Yes I am aware that
+      the contact details provided above maybe released in any emergency
+      situation to a member of the Human Resources team to act upon if it were
+      necessary. For this reason it is important that any updates to this
+      information are relate to the HR team the information may..
+    </p>
+    <table class="borderless_table">
+      <tr>
+        <td>
+          <div class="input_box">
+            <input type="text" required />
+            <label for=""> Emergency Contact Name </label>
+          </div>
+        </td>
+        <td>
+          <div class="input_box">
+            <input type="text" required />
+            <label for=""> Middle Name </label>
+          </div>
+        </td>
+
+        <td>
+          <div class="input_box">
+            <input type="number" required />
+            <label for=""> Phone Number 1</label>
+          </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <div class="input_box">
+            <input type="number" required />
+            <label for=""> Phone Number 2 </label>
+          </div>
+        </td>
+        <td>
+          <div class="input_box">
+            <input type="text" required />
+            <label for=""> Address 1 </label>
+          </div>
+        </td>
+        <td>
+          <div class="input_box">
+            <input type="text" required />
+            <label for=""> Address 2 </label>
+          </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <div class="input_box">
+            <select class="select" name="" id="">
+              <option value="">State</option>
+            </select>
+          </div>
+        </td>
+
+        <td>
+          <div class="input_box">
+            <select class="select" name="" id="">
+              <option value="">City</option>
+            </select>
+          </div>
+        </td>
+
+        <td>
+          <div class="input_box">
+            <input type="number" required />
+            <label for=""> Pincode </label>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="form_container">
+    <h3>Eligibility To Work</h3>
+    <p>
+      <input type="checkbox" name="have_a_passport_checkbox" />
+      Yes I have a Passport
+    </p>
+    <table class="borderless_table">
+      <tr>
+        <td>
+          <div class="input_box">
+            <input type="text" required />
+            <label for=""> Citizenship Country </label>
+          </div>
+        </td>
+        <td>
+          <div class="input_box">
+            <input type="text" required />
+            <label for=""> Passport Number</label>
+          </div>
+        </td>
+
+        <td>
+          <div class="input_box">
+            <input type="date" required />
+            <label for="" class="date-label"> Issued Date</label>
+          </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <div class="input_box">
+            <input type="date" required />
+            <label for="" class="date-label"> Expiration Date</label>
+          </div>
+        </td>
+        <td>
+          <div class="input_box">
+            <input type="text" required />
+            <label for=""> Issued By </label>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="form_container">
+    <h3>Pan and aadhaar details</h3>
+
+    <table class="borderless_table">
+      <tr>
+        <td>
+          <div class="input_box">
+            <input type="text" required />
+            <label for=""> PAN Number </label>
+          </div>
+        </td>
+        <td>
+          <div class="input_box">
+            <input type="text" required />
+            <label for=""> Name on PAN Card</label>
+          </div>
+        </td>
+
+        <td>
+          <div class="input_box">
+            <input type="number" required />
+            <label for=""> Aadhar Number </label>
+          </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <div class="input_box">
+            <input type="text" required />
+            <label for=""> Name on Aadhar Card</label>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="form_container">
+    <h3>Eduaction Qualifications</h3>
+    <table class="borderred_table" border="1">
+      <tr>
+        <th>Qualification</th>
+        <th align="left">Major</th>
+        <th align="left">Institution</th>
+        <th align="left">Year of Completion</th>
+        <th align="left">State/Country</th>
+      </tr>
+
+      <tr>
+        <td>
+          <div class="input_box">
+            <input type="text" required />
+          </div>
+        </td>
+        <td>
+          <div class="input_box">
+            <input type="text" required />
+          </div>
+        </td>
+
+        <td>
+          <div class="input_box">
+            <input type="text" required />
+          </div>
+        </td>
+        <td>
+          <div class="input_box">
+            <input type="text" required />
+          </div>
+        </td>
+        <td>
+          <div class="input_box">
+            <input type="text" required />
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="form_container">
+    <h3>Certificates and professional registrations</h3>
+    <table class="borderred_table" border="1">
+      <tr>
+        <th>Membership(Abbreivation)</th>
+        <th align="left">Organisation Membership(Full title)</th>
+        <th align="left">Membership Date</th>
+      </tr>
+
+      <tr>
+        <td>
+          <div class="input_box">
+            <input type="text" required />
+          </div>
+        </td>
+
+        <td>
+          <div class="input_box">
+            <input type="text" required />
+          </div>
+        </td>
+        <td>
+          <div class="input_box">
+            <input type="date" required />
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="form_container">
+    <h3>Honours and Awards</h3>
+    <table class="borderred_table" border="1">
+      <tr>
+        <th>Honours (Abbreivation)</th>
+        <th align="left">HONOUR OR AWARD (FULL TITLE)</th>
+        <th align="left">GRANTOR</th>
+        <th align="left">YEAR RECEIVED</th>
+      </tr>
+
+      <tr>
+        <td>
+          <div class="input_box">
+            <input type="text" required />
+          </div>
+        </td>
+        <td>
+          <div class="input_box">
+            <input type="text" required />
+          </div>
+        </td>
+        <td>
+          <div class="input_box">
+            <input type="text" required />
+          </div>
+        </td>
+        <td>
+          <div class="input_box">
+            <input type="text" required />
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="form_container">
+    <h3>EQUITY AND DIVERSITY INFORMATION-CONFIDENTIAL</h3>
+    <table class="borderless_table">
+      <tr>
+        <td>
+          <div class="input_box">
+            <select class="select" name="" id="">
+              <option value="">Gender</option>
+              <option value="">Male</option>
+              <option value="">Female</option>
+            </select>
+          </div>
+        </td>
+
+        <td>
+          <!-- <div class="input_box"> -->
+          Do you live with effects of an inquiry?
+          <input type="radio" name="inquiry" id="yes" />Yes
+          <input type="radio" name="inquiry" id="no" />No
+          <!-- </div> -->
+        </td>
+
+        <td>
+          <div class="input_box">
+            <input type="text" required />
+            <label for=""> if yes please specify </label>
+          </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <!-- <div class="input_box"> -->
+          Do you live with effects of an illness?
+          <input type="radio" name="illness" id="yes" />Yes
+          <input type="radio" name="illness" id="no" />No
+          <!-- </div> -->
+        </td>
+
+        <td>
+          <div class="input_box">
+            <input type="text" required />
+            <label for=""> if yes please specify </label>
+          </div>
+        </td>
+
+        <td>
+          <!-- <div class="input_box"> -->
+          Do you live with effects of a disability?
+          <input type="radio" name="disability" id="yes" />Yes
+          <input type="radio" name="disability" id="no" />No
+          <!-- </div> -->
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <div class="input_box">
+            <input type="text" required />
+            <label for=""> if yes please specify </label>
+          </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="3">
+          <div class="input_box">
+            <input type="text" required />
+            <label for="">
+              Please provide any health information the Company should aware of
+              in the event of emergency e.g. allery to any medicines
+            </label>
+          </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <div class="input_box">
+            <input type="text" required />
+            <label for=""> Blood Group </label>
+          </div>
+        </td>
+
+        <td>
+          <!-- <div class="input_box"> -->
+          Medicine Alert?
+          <input type="radio" name="medicine_alert" id="yes" />Yes
+          <input type="radio" name="medicine_alert" id="no" />No
+          <!-- </div> -->
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="form_container">
+    <h3>Previous Employment Details</h3>
+    <table class="borderred_table" border="1">
+      <tr>
+        <th>Company Name</th>
+        <th align="left">From (year)</th>
+        <th align="left">to (year)</th>
+        <th align="left">Location</th>
+        <th align="left">Designation</th>
+      </tr>
+
+      <tr>
+        <td>
+          <div class="input_box">
+            <input type="text" required />
+          </div>
+        </td>
+        <td>
+          <div class="input_box">
+            <input type="text" required />
+          </div>
+        </td>
+        <td>
+          <div class="input_box">
+            <input type="text" required />
+          </div>
+        </td>
+        <td>
+          <div class="input_box">
+            <input type="text" required />
+          </div>
+        </td>
+        <td>
+          <div class="input_box">
+            <input type="text" required />
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="checkbox_container">
+    <h3>Declaration and consent</h3>
+    <p class="checkbox-one">
+      <input type="checkbox" name="" id="" />
+      I declare that to the best of my knowledge all the information I have
+      provided is true and is in all respects correct. I understand that if any
+      false information is given or any material fact suppressed disciplinary
+      action- including dismissal maybe undertaken.
+    </p>
+
+    <p class="checkbox-second">
+      <input type="checkbox" name="" id="" />
+      I acknowledge that the information I have applied on this form, and that
+      the company gathers about me during the course of my employment with the
+      company, will be retained by the company for the purpose of considering
+      and evaluating my application for employment for any future applications.
+    </p>
+  </div>
+
+  <div class="checkbox_container">
+    <h3>Declaration and consent</h3>
+    <p class="checkbox-one">
+      <input type="checkbox" name="" id="" />
+      I declare that to the best of my knowledge all the information I have
+      provided is true and is in all respects correct. I understand that if any
+      false information is given or any material fact suppressed disciplinary
+      action- including dismissal maybe undertaken.
+    </p>
+
+    <p class="checkbox-second">
+      <input type="checkbox" name="" id="" />
+      I acknowledge that the information I have applied on this form, and that
+      the company gathers about me during the course of my employment with the
+      company, will be retained by the company for the purpose of considering
+      and evaluating my application for employment for any future applications.
+    </p>
+  </div>
+
+  <div class="checkbox_container">
+    <h3>Qualifications/ Certificates/ Professional resignations:</h3>
+    <p class="checkbox-one">
+      <input type="checkbox" name="" id="" />
+      I authorised Jocata to consent the body Institution(s) stated herein, and
+      I further authorise a designated Office of the institution to provide
+      evidence to Jocata that I qualified for and was awarded the qualification
+      / certificate / professional resignation as stated. The authority shall
+      remain
+    </p>
+  </div>
+
+  <div class="checkbox_container">
+    <h3>Other</h3>
+    <p class="checkbox-one">
+      <input type="checkbox" name="" id="" />
+      I give consent for the company to verify validate my work eligibility. In
+      addition I gave consent to on-going Health and General checks and
+      monitoring if required for the role.
+    </p>
+  </div>
+
+  <div class="button-container">
+    <button class="outline-btn">Exit</button>
+
+    <div class="right-buttons">
+      <button style="margin-right: 1rem" class="filled-btn">Save</button>
+      <button class="filled-btn">Save & Continue</button>
+>>>>>>> 26ae3f4196f5001d2460aa539a88753a572804f4
     </div>
 
     <div class="form_container">
@@ -619,3 +1237,4 @@
     </div>
   </form>
 </div>
+</form>
