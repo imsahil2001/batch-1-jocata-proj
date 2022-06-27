@@ -1,3 +1,4 @@
+<form [formGroup]="myReactiveForm">
 <div class="main_container">
   <div class="form_container">
     <h3>Personal Information</h3>
@@ -5,7 +6,8 @@
       <tr>
         <td>
           <div class="input_box">
-            <input type="text" required />
+            <input  formControlName="name" type="text" id="username" required />
+            <div *ngIf="!myReactiveForm.get('name').valid && !myReactiveForm.get('name').untouched">Please enter valid input</div>
             <label for=""> First Name </label>
           </div>
         </td>
@@ -635,3 +637,4 @@
     </div>
   </div>
 </div>
+</form>
