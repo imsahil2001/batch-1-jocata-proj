@@ -19,8 +19,17 @@ table{
    
 }
 
-table ,td,th{
-   
+table th
+{
+  text-align: center;
+  border: 1px solid #ccc;
+  color: #000;
+  font-weight: 500;
+  padding: 5px 15px;
+  font-size: 14px;
+  text-transform: uppercase;
+  box-sizing: border-box;
+  line-height: 17px; 
 }
 
 .borderred_table{
@@ -129,7 +138,8 @@ table ,td,th{
 }
 
 
-/* -------------Buttons------------- */
+/* ------------------------------------------------ */
+/* ------------------- buttons -------------------  */
 
 .button-container{
    margin-bottom: 1rem;
@@ -141,14 +151,18 @@ table ,td,th{
    display: inline-block;
 }
 
+
+
 .outline-btn{
    padding:.8rem;
    padding-left: 1.5rem;
    padding-right: 1.5rem;
-   color: rgb(82, 177, 255);
    background: none;
    text-transform: uppercase;
-   border: 2px solid rgb(82, 177, 255);
+   color: #44a3df;
+   border-color: #44a3df;
+   outline: none;
+   border-width: 2px;
    cursor: pointer;
 }
 
@@ -159,9 +173,18 @@ table ,td,th{
    padding-right: 1.5rem;
    color:white;
    text-transform: uppercase;
-   background: rgb(82, 177, 255);
+   background-color: #44a3df;
    cursor: pointer;
+   
 }
+
+.btncontrol {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+ }
+ 
+
 
 .validation_popup{
    position: absolute;
