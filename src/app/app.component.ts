@@ -28,6 +28,10 @@ export class AppComponent implements OnInit {
     CAddress1: new FormControl('', [Validators.required]),
     PAddress: new FormControl('', [Validators.required]),
     PAddress1: new FormControl('', [Validators.required]),
+    CPinCode: new FormControl('', [
+      Validators.pattern('^[1-9][0-9]{5}$'),
+      Validators.required,
+    ]),
     PinCode: new FormControl('', [
       Validators.pattern('^[1-9][0-9]{5}$'),
       Validators.required,
