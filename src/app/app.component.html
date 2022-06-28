@@ -8,7 +8,7 @@
           <td>
             <div class="input_box">
               <input
-                formControlName="name"
+                formControlName="FirstName"
                 type="text"
                 id="username"
                 required
@@ -16,26 +16,42 @@
               <div
                 class="validation_popup"
                 *ngIf="
-                  !myReactiveForm.get('name').valid &&
-                  !myReactiveForm.get('name').untouched
+                  myReactiveForm.get('FirstName').invalid &&
+                  myReactiveForm.get('FirstName').touched
                 "
               >
-                Please enter valid input
+                Please enter valid first Name input
               </div>
-              <label for=""> First Name </label>
+              <label for="">
+                First Name <span style="color: red">*</span>
+              </label>
             </div>
           </td>
           <td>
             <div class="input_box">
               <input type="text" required />
-              <label for=""> Middle Name </label>
+              <label for="">
+                Middle Name <span style="color: red">*</span>
+              </label>
             </div>
           </td>
 
           <td>
             <div class="input_box">
-              <input type="text" required />
-              <label for=""> Last Name </label>
+              <input type="text" formControlName="LastName" required />
+              <div
+                class="validation_popup"
+                *ngIf="
+                  !myReactiveForm.get('LastName').valid &&
+                  myReactiveForm.get('LastName').touched
+                "
+              >
+                Please enter valid Last Name input
+              </div>
+
+              <label for="">
+                Last Name <span style="color: red">*</span>
+              </label>
             </div>
           </td>
         </tr>
@@ -43,14 +59,41 @@
         <tr>
           <td>
             <div class="input_box">
-              <input type="date" required />
-              <label for="" class="date-label"> Date of Birth(Dob) </label>
+              <input
+                formControlName="DOB"
+                onfocus="(this.type='date')"
+                type="text"
+                required
+              />
+              <label for="" class="date-label">
+                Date of Birth(Dob) <span style="color: red">*</span>
+              </label>
+              <div
+                class="validation_popup"
+                *ngIf="
+                  !myReactiveForm.get('DOB').valid &&
+                  myReactiveForm.get('DOB').touched
+                "
+              >
+                Please enter valid DOB
+              </div>
             </div>
           </td>
           <td>
             <div class="input_box">
-              <input type="number" required />
-              <label for=""> Phone Number </label>
+              <input formControlName="PhoneNumber" required />
+              <label for="">
+                Phone Number <span style="color: red">*</span>
+              </label>
+              <div
+                class="validation_popup"
+                *ngIf="
+                  myReactiveForm.get('PhoneNumber').invalid &&
+                  myReactiveForm.get('PhoneNumber').touched
+                "
+              >
+                Please enter a valid mobile number
+              </div>
             </div>
           </td>
           <td>
@@ -67,8 +110,19 @@
         <tr>
           <td>
             <div class="input_box">
-              <input type="email" required />
-              <label for=""> Email Address </label>
+              <input formControlName="Email" required />
+              <label for="">
+                Email Address <span style="color: red">*</span>
+              </label>
+              <div
+                class="validation_popup"
+                *ngIf="
+                  myReactiveForm.get('Email')?.invalid &&
+                  myReactiveForm.get('Email')?.touched
+                "
+              >
+                Please enter a valid Email Address
+              </div>
             </div>
           </td>
         </tr>
@@ -81,14 +135,39 @@
         <tr>
           <td style="width: 30%">
             <div class="input_box">
-              <input type="text" required />
-              <label for=""> Address 1 </label>
+              <input formControlName="CAddress" type="text" required />
+              <label for="">
+                Address 1 <span style="color: red">*</span>
+              </label>
+
+              <div
+                class="validation_popup"
+                *ngIf="
+                  myReactiveForm.get('CAddress').invalid &&
+                  myReactiveForm.get('CAddress').touched
+                "
+              >
+                Please enter a valid Address
+              </div>
             </div>
           </td>
+
           <td style="width: 30%">
             <div class="input_box">
-              <input type="text" required />
-              <label for=""> Address 2 </label>
+              <input formControlName="CAddress" type="text" required />
+              <label for="">
+                Address 2 <span style="color: red">*</span>
+              </label>
+
+              <div
+                class="validation_popup"
+                *ngIf="
+                  myReactiveForm.get('CAddress1').invalid &&
+                  myReactiveForm.get('CAddress1').touched
+                "
+              >
+                Please enter a valid Address
+              </div>
             </div>
           </td>
 
@@ -111,8 +190,18 @@
           </td>
           <td>
             <div class="input_box">
-              <input type="number" required />
-              <label for=""> Pincode </label>
+              <input formControlName="PinCode" id="PinCode" required />
+              <label for=""> Pincode <span style="color: red">*</span> </label>
+
+              <div
+                class="validation_popup"
+                *ngIf="
+                  myReactiveForm.get('PinCode')?.invalid &&
+                  myReactiveForm.get('PinCode')?.touched
+                "
+              >
+                Please enter a valid Pincode!
+              </div>
             </div>
           </td>
         </tr>
@@ -125,15 +214,38 @@
         <tr>
           <td style="width: 30%">
             <div class="input_box">
-              <input type="text" required />
-              <label for=""> Address 1 </label>
+              <input formControlName="PAddress" type="text" required />
+              <label for="">
+                Address 1 <span style="color: red">*</span>
+              </label>
+              <div
+                class="validation_popup"
+                *ngIf="
+                  myReactiveForm.get('PAddress').invalid &&
+                  myReactiveForm.get('PAddress').touched
+                "
+              >
+                Please enter a valid Address
+              </div>
             </div>
           </td>
 
           <td style="width: 30%">
             <div class="input_box">
-              <input type="text" required />
-              <label for=""> Address 2 </label>
+              <input formControlName="PAddress" type="text" required />
+              <label for="">
+                Address 2 <span style="color: red">*</span>
+              </label>
+
+              <div
+                class="validation_popup"
+                *ngIf="
+                  myReactiveForm.get('PAddress1').invalid &&
+                  myReactiveForm.get('PAddress1').touched
+                "
+              >
+                Please enter a valid Address
+              </div>
             </div>
           </td>
 
@@ -156,8 +268,18 @@
           </td>
           <td>
             <div class="input_box">
-              <input type="number" required />
-              <label for=""> Pincode </label>
+              <input formControlName="PinCode" type="number" required />
+              <label for=""> Pincode <span style="color: red">*</span> </label>
+
+              <div
+                class="validation_popup"
+                *ngIf="
+                  myReactiveForm.get('PinCode').invalid &&
+                  myReactiveForm.get('PinCode').touched
+                "
+              >
+                Please enter a valid Pincode
+              </div>
             </div>
           </td>
         </tr>
@@ -177,22 +299,56 @@
         <tr>
           <td style="width: 30%">
             <div class="input_box">
-              <input type="text" required />
-              <label for=""> Emergency Contact Name </label>
+              <input type="text" formControlName="emergencyName" required />
+              <div
+                class="validation_popup"
+                *ngIf="
+                  myReactiveForm.get('emergencyName').touched &&
+                  myReactiveForm.get('emergencyName').invalid
+                "
+              >
+                Please enter valid Emergency Contact Name
+              </div>
+              <label for="">
+                Emergency Contact Name <span style="color: red">*</span>
+              </label>
             </div>
           </td>
 
           <td style="width: 30%">
             <div class="input_box">
-              <input type="text" required />
-              <label for=""> Relationship with Employee </label>
+              <input type="text" formControlName="relation" required />
+              <div
+                class="validation_popup"
+                *ngIf="
+                  myReactiveForm.get('relation').touched &&
+                  myReactiveForm.get('relation').invalid
+                "
+              >
+                Please enter valid relationship with employee
+              </div>
+              <label for="">
+                Relationship with Employee <span style="color: red">*</span>
+              </label>
             </div>
           </td>
 
           <td style="width: 30%">
             <div class="input_box">
-              <input type="number" required />
-              <label for=""> Phone Number 1</label>
+              <input type="number" formControlName="phone1" required />
+              <div
+                class="validation_popup"
+                *ngIf="
+                  myReactiveForm.get('phone1').touched &&
+                  myReactiveForm.get('phone1').invalid
+                "
+              >
+                Please enter valid Phone number
+              </div>
+
+              <label for="">
+                Phone Number 1<span style="color: red">*</span>
+              </label>
             </div>
           </td>
         </tr>
@@ -200,20 +356,54 @@
         <tr>
           <td style="width: 30%">
             <div class="input_box">
-              <input type="number" required />
-              <label for=""> Phone Number 2 </label>
+              <input type="number" formControlName="phone2" required />
+              <div
+                class="validation_popup"
+                *ngIf="
+                  myReactiveForm.get('phone2').touched &&
+                  myReactiveForm.get('phone2').invalid
+                "
+              >
+                Please enter valid Phone number
+              </div>
+
+              <label for="">
+                Phone Number 2 <span style="color: red">*</span>
+              </label>
             </div>
           </td>
           <td style="width: 30%">
             <div class="input_box">
-              <input type="text" required />
-              <label for=""> Address 1 </label>
+              <input type="text" formControlName="address1" required />
+              <div
+                class="validation_popup"
+                *ngIf="
+                  myReactiveForm.get('address1').touched &&
+                  myReactiveForm.get('address1').invalid
+                "
+              >
+                Please enter valid address
+              </div>
+              <label for="">
+                Address 1 <span style="color: red">*</span>
+              </label>
             </div>
           </td>
           <td style="width: 30%">
             <div class="input_box">
-              <input type="text" required />
-              <label for=""> Address 2 </label>
+              <input type="text" formControlName="address2" required />
+              <div
+                class="validation_popup"
+                *ngIf="
+                  myReactiveForm.get('address2').touched &&
+                  myReactiveForm.get('address2').invalid
+                "
+              >
+                Please enter valid address
+              </div>
+              <label for="">
+                Address 2 <span style="color: red">*</span>
+              </label>
             </div>
           </td>
         </tr>
@@ -237,8 +427,17 @@
 
           <td style="width: 30%">
             <div class="input_box">
-              <input type="number" required />
-              <label for=""> Pincode </label>
+              <input type="number" formControlName="pin" required />
+              <div
+                class="validation_popup"
+                *ngIf="
+                  myReactiveForm.get('pin').touched &&
+                  myReactiveForm.get('pin').invalid
+                "
+              >
+                Please enter valid PinCode
+              </div>
+              <label for=""> Pincode <span style="color: red">*</span> </label>
             </div>
           </td>
         </tr>
@@ -255,22 +454,77 @@
         <tr>
           <td style="width: 30%">
             <div class="input_box">
-              <input type="text" required />
-              <label for=""> Citizenship Country </label>
+              <input
+                type="text "
+                formControlName="country"
+                class="form-control"
+                required
+              />
+              <label for="country">
+                Citizenship Country <span style="color: red">*</span>
+              </label>
+              <div
+                class="validation_popup"
+                *ngIf="
+                  myReactiveForm.get('country').invalid &&
+                  myReactiveForm.get('country').touched
+                "
+              >
+                Country is Required
+              </div>
+              <!-- 
+                     <input type="email" formControlName="email" class="form-control" required />
+                     <label for=" email "> Email Address <span style="color: red">*</span> </label>
+                     <small *ngIf="email.invalid && email.touched " class="text-danger ">Email is Required</small> -->
             </div>
           </td>
 
           <td style="width: 30%">
             <div class="input_box">
-              <input type="text" required />
-              <label for=""> Passport Number</label>
+              <input
+                type="text "
+                formControlName="passport"
+                class="form-control"
+                required
+              />
+              <label for=" passport">
+                Passport Number<span style="color: red">*</span>
+              </label>
+              <div
+                class="validation_popup"
+                *ngIf="
+                  myReactiveForm.get('passport').invalid &&
+                  myReactiveForm.get('passport').touched
+                "
+              >
+                passport should be of correct type
+              </div>
             </div>
           </td>
 
           <td style="width: 30%">
             <div class="input_box">
-              <input type="date" required />
-              <label for="" class="date-label"> Issued Date</label>
+              <input
+                type="date"
+                formControlName="issueddate"
+                class="form-control"
+                required
+              />
+              <label for="issued Date " class="date-label">
+                Issued Date<span style="color: red">*</span>
+              </label>
+              <div
+                class="validation_popup"
+                *ngIf="
+                  myReactiveForm.get('issueddate').invalid &&
+                  myReactiveForm.get('issueddate').touched
+                "
+              >
+                fill issued date
+              </div>
+
+              <!-- <input type="date" formControlName="dob" required />
+                     <label for="dob" class="date-label"> Date of Birth(Dob)* <span style="color: red">*</span> </label> -->
             </div>
           </td>
         </tr>
@@ -278,14 +532,46 @@
         <tr>
           <td>
             <div class="input_box">
-              <input type="date" required />
-              <label for="" class="date-label"> Expiration Date</label>
+              <input
+                type="date"
+                formControlName="expirationdate"
+                class="form-control"
+                required
+              />
+              <label for="expirationdate " class="date-label">
+                Expiration Date</label
+              >
+              <div
+                class="validation_popup"
+                *ngIf="
+                  myReactiveForm.get('expirationdate').invalid &&
+                  myReactiveForm.get('expirationdate').touched
+                "
+              >
+                fill expiration date
+              </div>
             </div>
           </td>
           <td>
             <div class="input_box">
-              <input type="text" required />
-              <label for=""> Issued By </label>
+              <input
+                type="text "
+                formControlName="issuedby"
+                class="form-control"
+                required
+              />
+              <label for="issuedby">
+                Issued By <span style="color: red">*</span>
+              </label>
+              <div
+                class="validation_popup"
+                *ngIf="
+                  myReactiveForm.get('issuedby').invalid &&
+                  myReactiveForm.get('issuedby').touched
+                "
+              >
+                passport is issued by
+              </div>
             </div>
           </td>
         </tr>
@@ -299,21 +585,69 @@
         <tr>
           <td>
             <div class="input_box">
-              <input type="text" required />
-              <label for=""> PAN Number </label>
+              <input
+                type="text "
+                formControlName="pan"
+                class="form-control"
+                required
+              />
+              <label for="pan">
+                PAN Number <span style="color: red">*</span>
+              </label>
+              <div
+                class="validation_popup"
+                *ngIf="
+                  myReactiveForm.get('pan').invalid &&
+                  myReactiveForm.get('pan').touched
+                "
+              >
+                Pan is Required
+              </div>
             </div>
           </td>
           <td>
             <div class="input_box">
-              <input type="text" required />
-              <label for=""> Name on PAN Card</label>
+              <input
+                type="text "
+                formControlName="panname"
+                class="form-control"
+                required
+              />
+              <label for="panname ">
+                Name as on PAN Card<span style="color: red">*</span>
+              </label>
+              <div
+                class="validation_popup"
+                *ngIf="
+                  myReactiveForm.get('panname').invalid &&
+                  myReactiveForm.get('panname').touched
+                "
+              >
+                fill the name as in pan
+              </div>
             </div>
           </td>
 
           <td>
             <div class="input_box">
-              <input type="number" required />
-              <label for=""> Aadhar Number </label>
+              <input
+                type="text"
+                formControlName="aadhar"
+                class="form-control"
+                required
+              />
+              <label for="aadhar">
+                Aadhar Number <span style="color: red">*</span>
+              </label>
+              <div
+                class="validation_popup"
+                *ngIf="
+                  myReactiveForm.get('aadhar').invalid &&
+                  myReactiveForm.get('aadhar').touched
+                "
+              >
+                aadhar is Required
+              </div>
             </div>
           </td>
         </tr>
@@ -321,8 +655,24 @@
         <tr>
           <td>
             <div class="input_box">
-              <input type="text" required />
-              <label for=""> Name on Aadhar Card</label>
+              <input
+                type="text"
+                formControlName="aadharname"
+                class="form-control"
+                required
+              />
+              <label for="aadharname">
+                Name on Aadhar Card<span style="color: red">*</span>
+              </label>
+              <div
+                class="validation_popup"
+                *ngIf="
+                  myReactiveForm.get('aadharname').invalid &&
+                  myReactiveForm.get('aadharname').touched
+                "
+              >
+                fill the name as in aadhar
+              </div>
             </div>
           </td>
         </tr>
@@ -343,28 +693,73 @@
         <tr>
           <td>
             <div class="input_box">
-              <input type="text" required />
+              <input type="text" formControlName="qualification" required />
+              <div
+                class="validation_popup"
+                *ngIf="
+                  !myReactiveForm.get('qualification').valid &&
+                  myReactiveForm.get('qualification').touched
+                "
+              >
+                Please enter valid data
+              </div>
             </div>
           </td>
           <td>
             <div class="input_box">
-              <input type="text" required />
+              <input type="text" formControlName="institute" required />
+              <div
+                class="validation_popup"
+                *ngIf="
+                  !myReactiveForm.get('institute').valid &&
+                  myReactiveForm.get('institute').touched
+                "
+              >
+                Please enter an institute
+              </div>
             </div>
           </td>
 
           <td>
             <div class="input_box">
-              <input type="text" required />
+              <input type="text" formControlName="year" required />
+              <div
+                class="validation_popup"
+                *ngIf="
+                  !myReactiveForm.get('year').valid &&
+                  myReactiveForm.get('year').touched
+                "
+              >
+                Please enter valid year
+              </div>
             </div>
           </td>
           <td>
             <div class="input_box">
-              <input type="text" required />
+              <input type="text" formControlName="year" required />
+              <div
+                class="validation_popup"
+                *ngIf="
+                  !myReactiveForm.get('year').valid &&
+                  myReactiveForm.get('year').touched
+                "
+              >
+                Please enter valid year
+              </div>
             </div>
           </td>
           <td>
             <div class="input_box">
-              <input type="text" required />
+              <input type="text" formControlName="state" required />
+              <div
+                class="validation_popup"
+                *ngIf="
+                  !myReactiveForm.get('state').valid &&
+                  myReactiveForm.get('state').touched
+                "
+              >
+                Invalid
+              </div>
             </div>
           </td>
         </tr>
@@ -383,19 +778,46 @@
         <tr>
           <td>
             <div class="input_box">
-              <input type="text" required />
+              <input type="text" formControlName="Membership" required />
+              <div
+                class="validation_popup"
+                *ngIf="
+                  !myReactiveForm.get('Membership').valid &&
+                  myReactiveForm.get('Membership').touched
+                "
+              >
+                Please enter valid data
+              </div>
             </div>
           </td>
 
           <td>
             <div class="input_box">
-              <input type="text" required />
+              <input type="text" formControlName="OrgMembership" required />
+              <div
+                class="validation_popup"
+                *ngIf="
+                  !myReactiveForm.get('OrgMembership').valid &&
+                  myReactiveForm.get('OrgMembership').touched
+                "
+              >
+                Please enter valid data
+              </div>
             </div>
           </td>
           <td>
             <div class="input_box">
               <input type="date" required />
-              <label for="" class="date-label">Membership Date</label>
+              <label for="" class="date-label">Membership Date </label>
+              <div
+                class="validation_popup"
+                *ngIf="
+                  !myReactiveForm.get('date').valid &&
+                  myReactiveForm.get('date').touched
+                "
+              >
+                Please enter valid date
+              </div>
             </div>
           </td>
         </tr>
@@ -415,22 +837,58 @@
         <tr>
           <td>
             <div class="input_box">
-              <input type="text" required />
+              <input type="text" formControlName="honour" required />
+              <div
+                class="validation_popup"
+                *ngIf="
+                  !myReactiveForm.get('honour').valid &&
+                  myReactiveForm.get('honour').touched
+                "
+              >
+                Please enter valid data
+              </div>
             </div>
           </td>
           <td>
             <div class="input_box">
-              <input type="text" required />
+              <input type="text" formControlName="honouraward" required />
+              <div
+                class="validation_popup"
+                *ngIf="
+                  !myReactiveForm.get('honouraward').valid &&
+                  myReactiveForm.get('honouraward').touched
+                "
+              >
+                Please enter valid data
+              </div>
             </div>
           </td>
           <td>
             <div class="input_box">
-              <input type="text" required />
+              <input type="text" formControlName="grantor" required />
+              <div
+                class="validation_popup"
+                *ngIf="
+                  !myReactiveForm.get('grantor').valid &&
+                  myReactiveForm.get('grantor').touched
+                "
+              >
+                Please enter valid data
+              </div>
             </div>
           </td>
           <td>
             <div class="input_box">
-              <input type="text" required />
+              <input type="text" formControlName="yearReceived" required />
+              <div
+                class="validation_popup"
+                *ngIf="
+                  !myReactiveForm.get('yearReceived').valid &&
+                  myReactiveForm.get('yearReceived').touched
+                "
+              >
+                Please enter valid year
+              </div>
             </div>
           </td>
         </tr>
@@ -461,8 +919,17 @@
 
           <td>
             <div class="input_box">
-              <input type="text" required />
+              <input type="text" formControlName="inquiry" required />
               <label for=""> if yes please specify </label>
+              <div
+                class="validation_popup"
+                *ngIf="
+                  !myReactiveForm.get('inquiry')?.valid &&
+                  myReactiveForm.get('inquiry').touched
+                "
+              >
+                Please enter valid input
+              </div>
             </div>
           </td>
         </tr>
@@ -478,8 +945,17 @@
 
           <td>
             <div class="input_box">
-              <input type="text" required />
+              <input type="text" formControlName="illness" required />
               <label for=""> if yes please specify </label>
+              <div
+                class="validation_popup"
+                *ngIf="
+                  !myReactiveForm.get('illness')?.valid &&
+                  myReactiveForm.get('illness').touched
+                "
+              >
+                Please enter valid input
+              </div>
             </div>
           </td>
 
@@ -495,8 +971,17 @@
         <tr>
           <td>
             <div class="input_box">
-              <input type="text" required />
+              <input type="text" formControlName="disability" required />
               <label for=""> if yes please specify </label>
+              <div
+                class="validation_popup"
+                *ngIf="
+                  !myReactiveForm.get('disability')?.valid &&
+                  myReactiveForm.get('disability').touched
+                "
+              >
+                Please enter valid input
+              </div>
             </div>
           </td>
         </tr>
@@ -504,11 +989,20 @@
         <tr>
           <td colspan="3">
             <div class="input_box">
-              <input type="text" required />
+              <input type="text" formControlName="Healthinfo" required />
               <label for="">
                 Please provide any health information the Company should aware
                 of in the event of emergency e.g. allery to any medicines
               </label>
+              <div
+                class="validation_popup"
+                *ngIf="
+                  !myReactiveForm.get('Healthinfo')?.valid &&
+                  myReactiveForm.get('Healthinfo').touched
+                "
+              >
+                Please enter valid input
+              </div>
             </div>
           </td>
         </tr>
@@ -516,8 +1010,17 @@
         <tr>
           <td>
             <div class="input_box">
-              <input type="text" required />
+              <input type="text" formControlName="BloodGrp" required />
               <label for=""> Blood Group </label>
+              <div
+                class="validation_popup"
+                *ngIf="
+                  !myReactiveForm.get('BloodGrp')?.valid &&
+                  myReactiveForm.get('BloodGrp').touched
+                "
+              >
+                Please enter valid input
+              </div>
             </div>
           </td>
 
@@ -549,22 +1052,58 @@
           </td>
           <td>
             <div class="input_box">
-              <input type="text" required />
+              <input formControlName="fromyr" type="text" />
+              <div
+                class="validation_popup"
+                *ngIf="
+                  myReactiveForm.get('fromyr').invalid &&
+                  myReactiveForm.get('fromyr').touched
+                "
+              >
+                Valid Date Required
+              </div>
             </div>
           </td>
           <td>
             <div class="input_box">
-              <input type="text" required />
+              <input formControlName="toyr" type="text" />
+              <div
+                class="validation_popup"
+                *ngIf="
+                  myReactiveForm.get('toyr').invalid &&
+                  myReactiveForm.get('toyr').touched
+                "
+              >
+                Valid Date Required
+              </div>
             </div>
           </td>
           <td>
             <div class="input_box">
-              <input type="text" required />
+              <input formControlName="location" type="text" />
+              <div
+                class="validation_popup"
+                *ngIf="
+                  myReactiveForm.get('location').invalid &&
+                  myReactiveForm.get('location').touched
+                "
+              >
+                Valid Location Required
+              </div>
             </div>
           </td>
           <td>
             <div class="input_box">
-              <input type="text" required />
+              <input formControlName="designation" type="text" />
+              <div
+                class="validation_popup"
+                *ngIf="
+                  myReactiveForm.get('designation').invalid &&
+                  myReactiveForm.get('designation').touched
+                "
+              >
+                Valid Designation Required
+              </div>
             </div>
           </td>
         </tr>
