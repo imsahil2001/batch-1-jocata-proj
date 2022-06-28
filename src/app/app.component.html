@@ -190,14 +190,14 @@
           </td>
           <td>
             <div class="input_box">
-              <input formControlName="PinCode" id="PinCode" required />
+              <input formControlName="CPinCode" id="PinCode" required />
               <label for=""> Pincode <span style="color: red">*</span> </label>
 
               <div
                 class="validation_popup"
                 *ngIf="
-                  myReactiveForm.get('PinCode')?.invalid &&
-                  myReactiveForm.get('PinCode')?.touched
+                  myReactiveForm.get('CPinCode')?.invalid &&
+                  myReactiveForm.get('CPinCode')?.touched
                 "
               >
                 Please enter a valid Pincode!
