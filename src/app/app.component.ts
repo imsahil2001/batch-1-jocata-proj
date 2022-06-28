@@ -19,8 +19,10 @@ export class AppComponent implements OnInit {
       Validators.required,
     ]),
     PhoneNumber: new FormControl('', [
+      Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$'),
       Validators.required,
-      Validators.pattern('/^[0-9-]*$/'),
+      Validators.minLength(10),
+      Validators.maxLength(10),
     ]),
     CAddress: new FormControl('', [Validators.required]),
     CAddress1: new FormControl('', [Validators.required]),
