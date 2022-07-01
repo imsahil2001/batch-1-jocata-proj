@@ -1,6 +1,8 @@
 <div class="main_container">
+  <!-- <div *ngIf="submitted">gyfewtvtdstctrcwdhyf</div> -->
   <form [formGroup]="myReactiveForm">
     <!-- Form starts here -->
+    <!-- <div class="form_container" (ngSubmit)="onSubmit()"> -->
     <div class="form_container">
       <h3>Personal Information</h3>
       <table class="borderless_table">
@@ -13,15 +15,18 @@
                 id="username"
                 required
               />
+
               <div
                 class="validation_popup"
                 *ngIf="
-                  myReactiveForm.get('FirstName').invalid &&
-                  myReactiveForm.get('FirstName').touched
+                  (!myReactiveForm.get('FirstName').valid &&
+                    myReactiveForm.get('FirstName').touched) ||
+                  (submitted && myReactiveForm.get('FirstName').invalid)
                 "
               >
                 Please enter valid first Name input
               </div>
+
               <label for="">
                 First Name <span style="color: red">*</span>
               </label>
@@ -30,9 +35,7 @@
           <td>
             <div class="input_box">
               <input type="text" required />
-              <label for="">
-                Middle Name <span style="color: red">*</span>
-              </label>
+              <label for=""> Middle Name </label>
             </div>
           </td>
 
@@ -42,8 +45,9 @@
               <div
                 class="validation_popup"
                 *ngIf="
-                  !myReactiveForm.get('LastName').valid &&
-                  myReactiveForm.get('LastName').touched
+                  (!myReactiveForm.get('LastName').valid &&
+                    myReactiveForm.get('LastName').touched) ||
+                  (submitted && myReactiveForm.get('LastName').invalid)
                 "
               >
                 Please enter valid Last Name input
@@ -71,8 +75,9 @@
               <div
                 class="validation_popup"
                 *ngIf="
-                  !myReactiveForm.get('DOB').valid &&
-                  myReactiveForm.get('DOB').touched
+                  (!myReactiveForm.get('DOB').valid &&
+                    myReactiveForm.get('DOB').touched) ||
+                  (submitted && myReactiveForm.get('DOB').invalid)
                 "
               >
                 Please enter valid DOB
@@ -88,8 +93,9 @@
               <div
                 class="validation_popup"
                 *ngIf="
-                  myReactiveForm.get('PhoneNumber').invalid &&
-                  myReactiveForm.get('PhoneNumber').touched
+                  (myReactiveForm.get('PhoneNumber').invalid &&
+                    myReactiveForm.get('PhoneNumber').touched) ||
+                  (submitted && myReactiveForm.get('PhoneNumber').invalid)
                 "
               >
                 Please enter a valid mobile number
@@ -102,6 +108,8 @@
                 <option value="">Marital Status</option>
                 <option value="">Married</option>
                 <option value="">Unmarried</option>
+
+                <option value="">Divorced</option>
               </select>
             </div>
           </td>
@@ -117,8 +125,9 @@
               <div
                 class="validation_popup"
                 *ngIf="
-                  myReactiveForm.get('Email')?.invalid &&
-                  myReactiveForm.get('Email')?.touched
+                  (myReactiveForm.get('Email')?.invalid &&
+                    myReactiveForm.get('Email')?.touched) ||
+                  (submitted && myReactiveForm.get('Email').invalid)
                 "
               >
                 Please enter a valid Email Address
@@ -143,8 +152,9 @@
               <div
                 class="validation_popup"
                 *ngIf="
-                  myReactiveForm.get('CAddress').invalid &&
-                  myReactiveForm.get('CAddress').touched
+                  (myReactiveForm.get('CAddress').invalid &&
+                    myReactiveForm.get('CAddress').touched) ||
+                  (submitted && myReactiveForm.get('CAddress').invalid)
                 "
               >
                 Please enter a valid Address
@@ -154,7 +164,7 @@
 
           <td style="width: 30%">
             <div class="input_box">
-              <input formControlName="CAddress" type="text" required />
+              <input formControlName="CAddress1" type="text" required />
               <label for="">
                 Address 2 <span style="color: red">*</span>
               </label>
@@ -162,8 +172,9 @@
               <div
                 class="validation_popup"
                 *ngIf="
-                  myReactiveForm.get('CAddress1').invalid &&
-                  myReactiveForm.get('CAddress1').touched
+                  (myReactiveForm.get('CAddress1').invalid &&
+                    myReactiveForm.get('CAddress1').touched) ||
+                  (submitted && myReactiveForm.get('CAddress1').invalid)
                 "
               >
                 Please enter a valid Address
@@ -196,8 +207,9 @@
               <div
                 class="validation_popup"
                 *ngIf="
-                  myReactiveForm.get('CPinCode')?.invalid &&
-                  myReactiveForm.get('CPinCode')?.touched
+                  (myReactiveForm.get('CPinCode')?.invalid &&
+                    myReactiveForm.get('CPinCode')?.touched) ||
+                  (submitted && myReactiveForm.get('CPinCode').invalid)
                 "
               >
                 Please enter a valid Pincode!
@@ -221,8 +233,9 @@
               <div
                 class="validation_popup"
                 *ngIf="
-                  myReactiveForm.get('PAddress').invalid &&
-                  myReactiveForm.get('PAddress').touched
+                  (myReactiveForm.get('PAddress').invalid &&
+                    myReactiveForm.get('PAddress').touched) ||
+                  (submitted && myReactiveForm.get('PAddress').invalid)
                 "
               >
                 Please enter a valid Address
@@ -232,7 +245,7 @@
 
           <td style="width: 30%">
             <div class="input_box">
-              <input formControlName="PAddress" type="text" required />
+              <input formControlName="PAddress1" type="text" required />
               <label for="">
                 Address 2 <span style="color: red">*</span>
               </label>
@@ -240,8 +253,9 @@
               <div
                 class="validation_popup"
                 *ngIf="
-                  myReactiveForm.get('PAddress1').invalid &&
-                  myReactiveForm.get('PAddress1').touched
+                  (myReactiveForm.get('PAddress1').invalid &&
+                    myReactiveForm.get('PAddress1').touched) ||
+                  (submitted && myReactiveForm.get('PAddress1').invalid)
                 "
               >
                 Please enter a valid Address
@@ -274,8 +288,9 @@
               <div
                 class="validation_popup"
                 *ngIf="
-                  myReactiveForm.get('PinCode').invalid &&
-                  myReactiveForm.get('PinCode').touched
+                  (myReactiveForm.get('PinCode').invalid &&
+                    myReactiveForm.get('PinCode').touched) ||
+                  (submitted && myReactiveForm.get('PinCode').invalid)
                 "
               >
                 Please enter a valid Pincode
@@ -303,8 +318,9 @@
               <div
                 class="validation_popup"
                 *ngIf="
-                  myReactiveForm.get('emergencyName').touched &&
-                  myReactiveForm.get('emergencyName').invalid
+                  (myReactiveForm.get('emergencyName').touched &&
+                    myReactiveForm.get('emergencyName').invalid) ||
+                  (submitted && myReactiveForm.get('emergencyName').invalid)
                 "
               >
                 Please enter valid Emergency Contact Name
@@ -321,8 +337,9 @@
               <div
                 class="validation_popup"
                 *ngIf="
-                  myReactiveForm.get('relation').touched &&
-                  myReactiveForm.get('relation').invalid
+                  (myReactiveForm.get('relation').touched &&
+                    myReactiveForm.get('relation').invalid) ||
+                  (submitted && myReactiveForm.get('relation').invalid)
                 "
               >
                 Please enter valid relationship with employee
@@ -339,8 +356,9 @@
               <div
                 class="validation_popup"
                 *ngIf="
-                  myReactiveForm.get('phone1').touched &&
-                  myReactiveForm.get('phone1').invalid
+                  (myReactiveForm.get('phone1').touched &&
+                    myReactiveForm.get('phone1').invalid) ||
+                  (submitted && myReactiveForm.get('phone1').invalid)
                 "
               >
                 Please enter valid Phone number
@@ -367,9 +385,7 @@
                 Please enter valid Phone number
               </div>
 
-              <label for="">
-                Phone Number 2 <span style="color: red">*</span>
-              </label>
+              <label for=""> Phone Number 2 </label>
             </div>
           </td>
           <td style="width: 30%">
@@ -378,8 +394,9 @@
               <div
                 class="validation_popup"
                 *ngIf="
-                  myReactiveForm.get('address1').touched &&
-                  myReactiveForm.get('address1').invalid
+                  (myReactiveForm.get('address1').touched &&
+                    myReactiveForm.get('address1').invalid) ||
+                  (submitted && myReactiveForm.get('address1').invalid)
                 "
               >
                 Please enter valid address
@@ -395,8 +412,10 @@
               <div
                 class="validation_popup"
                 *ngIf="
-                  myReactiveForm.get('address2').touched &&
-                  myReactiveForm.get('address2').invalid
+                  submitted ||
+                  (myReactiveForm.get('address2').touched &&
+                    myReactiveForm.get('address2').invalid) ||
+                  (submitted && myReactiveForm.get('address2').touchedinvalid)
                 "
               >
                 Please enter valid address
@@ -431,8 +450,9 @@
               <div
                 class="validation_popup"
                 *ngIf="
-                  myReactiveForm.get('pin').touched &&
-                  myReactiveForm.get('pin').invalid
+                  (myReactiveForm.get('pin').touched &&
+                    myReactiveForm.get('pin').invalid) ||
+                  (submitted && myReactiveForm.get('pin').invalid)
                 "
               >
                 Please enter valid PinCode
@@ -466,8 +486,9 @@
               <div
                 class="validation_popup"
                 *ngIf="
-                  myReactiveForm.get('country').invalid &&
-                  myReactiveForm.get('country').touched
+                  (myReactiveForm.get('country').invalid &&
+                    myReactiveForm.get('country').touched) ||
+                  (submitted && myReactiveForm.get('country').invalid)
                 "
               >
                 Country is Required
@@ -493,8 +514,9 @@
               <div
                 class="validation_popup"
                 *ngIf="
-                  myReactiveForm.get('passport').invalid &&
-                  myReactiveForm.get('passport').touched
+                  (myReactiveForm.get('passport').invalid &&
+                    myReactiveForm.get('passport').touched) ||
+                  (submitted && myReactiveForm.get('passport').invalid)
                 "
               >
                 passport should be of correct type
@@ -516,8 +538,9 @@
               <div
                 class="validation_popup"
                 *ngIf="
-                  myReactiveForm.get('issueddate').invalid &&
-                  myReactiveForm.get('issueddate').touched
+                  (myReactiveForm.get('issueddate').invalid &&
+                    myReactiveForm.get('issueddate').touched) ||
+                  (submitted && myReactiveForm.get('issueddate').invalid)
                 "
               >
                 fill issued date
@@ -544,8 +567,9 @@
               <div
                 class="validation_popup"
                 *ngIf="
-                  myReactiveForm.get('expirationdate').invalid &&
-                  myReactiveForm.get('expirationdate').touched
+                  (myReactiveForm.get('expirationdate').invalid &&
+                    myReactiveForm.get('expirationdate').touched) ||
+                  (submitted && myReactiveForm.get('expirationdate').invalid)
                 "
               >
                 fill expiration date
@@ -566,8 +590,9 @@
               <div
                 class="validation_popup"
                 *ngIf="
-                  myReactiveForm.get('issuedby').invalid &&
-                  myReactiveForm.get('issuedby').touched
+                  (myReactiveForm.get('issuedby').invalid &&
+                    myReactiveForm.get('issuedby').touched) ||
+                  (submitted && myReactiveForm.get('issuedby').invalid)
                 "
               >
                 passport is issued by
@@ -597,8 +622,9 @@
               <div
                 class="validation_popup"
                 *ngIf="
-                  myReactiveForm.get('pan').invalid &&
-                  myReactiveForm.get('pan').touched
+                  (myReactiveForm.get('pan').invalid &&
+                    myReactiveForm.get('pan').touched) ||
+                  (submitted && myReactiveForm.get('pan').invalid)
                 "
               >
                 Pan is Required
@@ -619,8 +645,9 @@
               <div
                 class="validation_popup"
                 *ngIf="
-                  myReactiveForm.get('panname').invalid &&
-                  myReactiveForm.get('panname').touched
+                  (myReactiveForm.get('panname').invalid &&
+                    myReactiveForm.get('panname').touched) ||
+                  (submitted && myReactiveForm.get('panname').invalid)
                 "
               >
                 fill the name as in pan
@@ -642,8 +669,9 @@
               <div
                 class="validation_popup"
                 *ngIf="
-                  myReactiveForm.get('aadhar').invalid &&
-                  myReactiveForm.get('aadhar').touched
+                  (myReactiveForm.get('aadhar').invalid &&
+                    myReactiveForm.get('aadhar').touched) ||
+                  (submitted && myReactiveForm.get('aadhar').invalid)
                 "
               >
                 aadhar is Required
@@ -667,8 +695,9 @@
               <div
                 class="validation_popup"
                 *ngIf="
-                  myReactiveForm.get('aadharname').invalid &&
-                  myReactiveForm.get('aadharname').touched
+                  (myReactiveForm.get('aadharname').invalid &&
+                    myReactiveForm.get('aadharname').touched) ||
+                  (submitted && myReactiveForm.get('aadharname').invalid)
                 "
               >
                 fill the name as in aadhar
@@ -697,8 +726,9 @@
               <div
                 class="validation_popup"
                 *ngIf="
-                  !myReactiveForm.get('qualification').valid &&
-                  myReactiveForm.get('qualification').touched
+                  (!myReactiveForm.get('qualification').valid &&
+                    myReactiveForm.get('qualification').touched) ||
+                  (submitted && myReactiveForm.get('qualification').invalid)
                 "
               >
                 Please enter valid data
@@ -707,30 +737,32 @@
           </td>
           <td>
             <div class="input_box">
-              <input type="text" formControlName="institute" required />
+              <input type="text" formControlName="major" required />
               <div
                 class="validation_popup"
                 *ngIf="
-                  !myReactiveForm.get('institute').valid &&
-                  myReactiveForm.get('institute').touched
+                  (!myReactiveForm.get('major').valid &&
+                    myReactiveForm.get('major').touched) ||
+                  (submitted && myReactiveForm.get('major').invalid)
                 "
               >
-                Please enter an institute
+                Please enter major details
               </div>
             </div>
           </td>
 
           <td>
             <div class="input_box">
-              <input type="text" formControlName="year" required />
+              <input type="text" formControlName="institute" required />
               <div
                 class="validation_popup"
                 *ngIf="
-                  !myReactiveForm.get('year').valid &&
-                  myReactiveForm.get('year').touched
+                  (!myReactiveForm.get('institute').valid &&
+                    myReactiveForm.get('institute').touched) ||
+                  (submitted && myReactiveForm.get('institute').invalid)
                 "
               >
-                Please enter valid year
+                Please enter valid Institution name
               </div>
             </div>
           </td>
@@ -740,8 +772,9 @@
               <div
                 class="validation_popup"
                 *ngIf="
-                  !myReactiveForm.get('year').valid &&
-                  myReactiveForm.get('year').touched
+                  (!myReactiveForm.get('year').valid &&
+                    myReactiveForm.get('year').touched) ||
+                  (submitted && myReactiveForm.get('year').invalid)
                 "
               >
                 Please enter valid year
@@ -754,8 +787,9 @@
               <div
                 class="validation_popup"
                 *ngIf="
-                  !myReactiveForm.get('state').valid &&
-                  myReactiveForm.get('state').touched
+                  (!myReactiveForm.get('state').valid &&
+                    myReactiveForm.get('state').touched) ||
+                  (submitted && myReactiveForm.get('state').invalid)
                 "
               >
                 Invalid
@@ -782,8 +816,9 @@
               <div
                 class="validation_popup"
                 *ngIf="
-                  !myReactiveForm.get('Membership').valid &&
-                  myReactiveForm.get('Membership').touched
+                  (!myReactiveForm.get('Membership').valid &&
+                    myReactiveForm.get('Membership').touched) ||
+                  (submitted && myReactiveForm.get('Membership').invalid)
                 "
               >
                 Please enter valid data
@@ -797,8 +832,9 @@
               <div
                 class="validation_popup"
                 *ngIf="
-                  !myReactiveForm.get('OrgMembership').valid &&
-                  myReactiveForm.get('OrgMembership').touched
+                  (!myReactiveForm.get('OrgMembership').valid &&
+                    myReactiveForm.get('OrgMembership').touched) ||
+                  (submitted && myReactiveForm.get('OrgMembership').invalid)
                 "
               >
                 Please enter valid data
@@ -812,8 +848,9 @@
               <div
                 class="validation_popup"
                 *ngIf="
-                  !myReactiveForm.get('date').valid &&
-                  myReactiveForm.get('date').touched
+                  (!myReactiveForm.get('date').valid &&
+                    myReactiveForm.get('date').touched) ||
+                  (submitted && myReactiveForm.get('date').invalid)
                 "
               >
                 Please enter valid date
@@ -841,8 +878,9 @@
               <div
                 class="validation_popup"
                 *ngIf="
-                  !myReactiveForm.get('honour').valid &&
-                  myReactiveForm.get('honour').touched
+                  (!myReactiveForm.get('honour').valid &&
+                    myReactiveForm.get('honour').touched) ||
+                  (submitted && myReactiveForm.get('honour').invalid)
                 "
               >
                 Please enter valid data
@@ -855,8 +893,9 @@
               <div
                 class="validation_popup"
                 *ngIf="
-                  !myReactiveForm.get('honouraward').valid &&
-                  myReactiveForm.get('honouraward').touched
+                  (!myReactiveForm.get('honouraward').valid &&
+                    myReactiveForm.get('honouraward').touched) ||
+                  (submitted && myReactiveForm.get('honouraward').invalid)
                 "
               >
                 Please enter valid data
@@ -869,8 +908,9 @@
               <div
                 class="validation_popup"
                 *ngIf="
-                  !myReactiveForm.get('grantor').valid &&
-                  myReactiveForm.get('grantor').touched
+                  (!myReactiveForm.get('grantor').valid &&
+                    myReactiveForm.get('grantor').touched) ||
+                  (submitted && myReactiveForm.get('grantor').invalid)
                 "
               >
                 Please enter valid data
@@ -883,8 +923,9 @@
               <div
                 class="validation_popup"
                 *ngIf="
-                  !myReactiveForm.get('yearReceived').valid &&
-                  myReactiveForm.get('yearReceived').touched
+                  (!myReactiveForm.get('yearReceived').valid &&
+                    myReactiveForm.get('yearReceived').touched) ||
+                  (submitted && myReactiveForm.get('yearReceived').invalid)
                 "
               >
                 Please enter valid year
@@ -924,8 +965,9 @@
               <div
                 class="validation_popup"
                 *ngIf="
-                  !myReactiveForm.get('inquiry')?.valid &&
-                  myReactiveForm.get('inquiry').touched
+                  (!myReactiveForm.get('inquiry')?.valid &&
+                    myReactiveForm.get('inquiry').touched) ||
+                  (submitted && myReactiveForm.get('inquiry').invalid)
                 "
               >
                 Please enter valid input
@@ -950,8 +992,9 @@
               <div
                 class="validation_popup"
                 *ngIf="
-                  !myReactiveForm.get('illness')?.valid &&
-                  myReactiveForm.get('illness').touched
+                  (!myReactiveForm.get('illness')?.valid &&
+                    myReactiveForm.get('illness').touched) ||
+                  (submitted && myReactiveForm.get('illness').invalid)
                 "
               >
                 Please enter valid input
@@ -976,8 +1019,9 @@
               <div
                 class="validation_popup"
                 *ngIf="
-                  !myReactiveForm.get('disability')?.valid &&
-                  myReactiveForm.get('disability').touched
+                  (!myReactiveForm.get('disability')?.valid &&
+                    myReactiveForm.get('disability').touched) ||
+                  (submitted && myReactiveForm.get('disability').invalid)
                 "
               >
                 Please enter valid input
@@ -997,8 +1041,9 @@
               <div
                 class="validation_popup"
                 *ngIf="
-                  !myReactiveForm.get('Healthinfo')?.valid &&
-                  myReactiveForm.get('Healthinfo').touched
+                  (!myReactiveForm.get('Healthinfo')?.valid &&
+                    myReactiveForm.get('Healthinfo').touched) ||
+                  (submitted && myReactiveForm.get('Healthinfo').invalid)
                 "
               >
                 Please enter valid input
@@ -1015,8 +1060,9 @@
               <div
                 class="validation_popup"
                 *ngIf="
-                  !myReactiveForm.get('BloodGrp')?.valid &&
-                  myReactiveForm.get('BloodGrp').touched
+                  (!myReactiveForm.get('BloodGrp')?.valid &&
+                    myReactiveForm.get('BloodGrp').touched) ||
+                  (submitted && myReactiveForm.get('BloodGrp').invalid)
                 "
               >
                 Please enter valid input
@@ -1056,8 +1102,9 @@
               <div
                 class="validation_popup"
                 *ngIf="
-                  myReactiveForm.get('fromyr').invalid &&
-                  myReactiveForm.get('fromyr').touched
+                  (myReactiveForm.get('fromyr').invalid &&
+                    myReactiveForm.get('fromyr').touched) ||
+                  (submitted && myReactiveForm.get('fromyr').invalid)
                 "
               >
                 Valid Date Required
@@ -1070,8 +1117,9 @@
               <div
                 class="validation_popup"
                 *ngIf="
-                  myReactiveForm.get('toyr').invalid &&
-                  myReactiveForm.get('toyr').touched
+                  (myReactiveForm.get('toyr').invalid &&
+                    myReactiveForm.get('toyr').touched) ||
+                  (submitted && myReactiveForm.get('toyr').invalid)
                 "
               >
                 Valid Date Required
@@ -1084,8 +1132,9 @@
               <div
                 class="validation_popup"
                 *ngIf="
-                  myReactiveForm.get('location').invalid &&
-                  myReactiveForm.get('location').touched
+                  (myReactiveForm.get('location').invalid &&
+                    myReactiveForm.get('location').touched) ||
+                  (submitted && myReactiveForm.get('location').invalid)
                 "
               >
                 Valid Location Required
@@ -1098,8 +1147,9 @@
               <div
                 class="validation_popup"
                 *ngIf="
-                  myReactiveForm.get('designation').invalid &&
-                  myReactiveForm.get('designation').touched
+                  (myReactiveForm.get('designation').invalid &&
+                    myReactiveForm.get('designation').touched) ||
+                  (submitted && myReactiveForm.get('designation').invalid)
                 "
               >
                 Valid Designation Required
@@ -1153,11 +1203,19 @@
     </div>
 
     <div class="button-container">
-      <button style="margin-right: 1rem" class="outline-btn">Exit</button>
+      <!-- <button style="margin-right: 1rem" class="outline-btn">Exit</button> -->
 
+      <!-- (click)="onSubmit()" -->
       <div class="right-buttons">
-        <button style="margin-right: 1rem" class="filled-btn">Save</button>
-        <button class="filled-btn">Save & Continue</button>
+        <button
+          (click)="onSubmit()"
+          type="submit"
+          style="margin-right: 1rem"
+          class="filled-btn"
+        >
+          Save
+        </button>
+        <!-- <button class="filled-btn" onclick="onSubmit()">Save & Continue</button> -->
       </div>
     </div>
   </form>
