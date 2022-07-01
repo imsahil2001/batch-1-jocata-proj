@@ -104,13 +104,31 @@
           </td>
           <td>
             <div class="input_box">
-              <select class="select" name="" id="">
-                <option value="">Marital Status</option>
-                <option value="">Married</option>
-                <option value="">Unmarried</option>
-
-                <option value="">Divorced</option>
+              <select
+                class="select"
+                name=""
+                id=""
+                formControlName="MaritalStatus"
+              >
+                <option value="" disabled>Marital Status</option>
+                <option
+                  *ngFor="let status of maritalStatusList"
+                  [ngValue]="status"
+                  (change)="changeMaritalStatus($event)"
+                >
+                  {{ status }}
+                </option>
               </select>
+              <div
+                class="validation_popup"
+                *ngIf="
+                  (myReactiveForm.get('MaritalStatus').invalid &&
+                    myReactiveForm.get('MaritalStatus').touched) ||
+                  (submitted && myReactiveForm.get('MaritalStatus').invalid)
+                "
+              >
+                Please enter a valid marital status
+              </div>
             </div>
           </td>
         </tr>

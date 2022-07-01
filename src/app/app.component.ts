@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+// import { runInThisContext } from 'vm';
 import { UserService } from './user.service';
 
 @Component({
@@ -17,7 +18,17 @@ export class AppComponent implements OnInit {
   // base url to which request has to be send
   submitted: any = false;
   baseUrl: string = '';
+
+  maritalStatusList: any[] = [
+    'Married',
+    'Unmarried',
+    'Divorced',
+    'Registered Partner',
+    'Widowed',
+    'Separated',
+  ];
   myReactiveForm: any = {};
+
   ngOnInit() {
     // reactive form
     this.myReactiveForm = new FormGroup({
@@ -25,6 +36,7 @@ export class AppComponent implements OnInit {
         Validators.pattern('[A-Za-z]{1,32}'),
         Validators.required,
       ]),
+      MaritalStatus: new FormControl('', [Validators.required]),
       LastName: new FormControl('', [
         Validators.pattern('[A-Za-z]{1,32}'),
         Validators.required,
@@ -200,17 +212,19 @@ export class AppComponent implements OnInit {
       ]),
     });
   }
+
+  changeMaritalStatus(e: any) {
+    this.myReactiveForm.value.MaritalStatus?.setValue(e.target.value);
+    console.log(this.myReactiveForm.get('MaritalStatus'));
+  }
+
   // request to server
   onSubmit() {
     // this.ngOnInit();
     this.submitted = true;
     //window.location.reload();
     console.log(this.submitted);
-    // console.log(this.myReactiveForm.invalid);
-
-    Object.keys(this.myReactiveForm.controls).forEach((key) => {
-      this.myReactiveForm.controls[key].makeAsDirty();
-    });
+    console.log(this.myReactiveForm.value);
 
     if (this.myReactiveForm.invalid) {
       return;
