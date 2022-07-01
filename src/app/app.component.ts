@@ -17,8 +17,12 @@ export class AppComponent implements OnInit {
 
   // base url to which request has to be send
   submitted: any = false;
-  baseUrl: string = '';
+  responsePayload: any = {
+    emp_id: '',
+  };
 
+  // --------------------------------------------
+  //select option list
   maritalStatusList: any[] = [
     'Married',
     'Unmarried',
@@ -27,6 +31,18 @@ export class AppComponent implements OnInit {
     'Widowed',
     'Separated',
   ];
+
+  genderList: any[] = [
+    'Male',
+    'Female',
+    'Lesbian',
+    'Gay',
+    'Bisexual',
+    'Transgender',
+  ];
+
+  // --------------------------------------------
+  // form group
   myReactiveForm: any = {};
 
   ngOnInit() {
@@ -71,19 +87,13 @@ export class AppComponent implements OnInit {
         Validators.minLength(10),
         Validators.maxLength(10),
       ]),
-      country: new FormControl(null, [
-        Validators.required,
-        Validators.pattern('^[a-zA-Z]{1,}$'),
-      ]),
-      passport: new FormControl('', [
-        Validators.pattern('^[A-PR-WYa-pr-wy][1-9]\\d\\s?\\d{4}[1-9]$'),
-      ]),
-      issueddate: new FormControl(null, [Validators.required]),
-      expirationdate: new FormControl(null, [Validators.required]),
-      issuedby: new FormControl(null, [
-        Validators.required,
-        Validators.pattern('^[a-zA-Z]{1,}$'),
-      ]),
+
+      country: new FormControl({ value: '', disabled: true }),
+      passport: new FormControl({ value: '', disabled: true }),
+      issueddate: new FormControl({ value: '', disabled: true }),
+      expirationdate: new FormControl({ value: '', disabled: true }),
+      issuedby: new FormControl({ value: '', disabled: true }),
+
       pan: new FormControl(null, [
         Validators.required,
         Validators.pattern('[A-Z]{5}[0-9]{4}[A-Z]{1}'),
@@ -96,6 +106,9 @@ export class AppComponent implements OnInit {
         Validators.pattern('^[2-9]{1}[0-9]{3}\\s[0-9]{4}\\s[0-9]{4}$'),
       ]),
       aadharname: new FormControl(null, [
+        Validators.pattern('^[a-zA-Z][a-zA-Z\\s]+$'),
+      ]),
+      companyname: new FormControl(null, [
         Validators.pattern('^[a-zA-Z][a-zA-Z\\s]+$'),
       ]),
       fromyr: new FormControl('', [
@@ -158,6 +171,10 @@ export class AppComponent implements OnInit {
         Validators.pattern('[A-Za-z]{1,32}'),
         Validators.required,
       ]),
+      city: new FormControl('', [
+        Validators.pattern('[A-Za-z]{1,32}'),
+        Validators.required,
+      ]),
       institute: new FormControl('', [Validators.required]),
       yearReceived: new FormControl('', [
         Validators.pattern('[0-9]{1,4}'),
@@ -190,11 +207,17 @@ export class AppComponent implements OnInit {
         Validators.required,
       ]),
       gender: new FormControl('', Validators.required),
+
+      isInjured: new FormControl(false),
+      isIll: new FormControl(false),
+      isDisabled: new FormControl(false),
+      isMedicalAlert: new FormControl(false),
       BloodGrp: new FormControl('', [
         Validators.pattern('^(A|B|AB|O)[+-]$'),
         Validators.required,
       ]),
-      inquiry: new FormControl('', [
+
+      injuryDetails: new FormControl('', [
         Validators.pattern('^(?!d+$)(?:[a-zA-Z][a-zA-Z @&$,]*)?$'),
         Validators.required,
       ]),
@@ -202,34 +225,149 @@ export class AppComponent implements OnInit {
         Validators.pattern('^(?!d+$)(?:[a-zA-Z][a-zA-Z @&$,]*)?$'),
         Validators.required,
       ]),
-      illness: new FormControl('', [
+      illnessDetails: new FormControl('', [
         Validators.pattern('^(?!d+$)(?:[a-zA-Z][a-zA-Z @&$,]*)?$'),
         Validators.required,
       ]),
-      disability: new FormControl('', [
+      disabilityDetails: new FormControl('', [
         Validators.pattern('^(?!d+$)(?:[a-zA-Z][a-zA-Z @&$,]*)?$'),
         Validators.required,
       ]),
     });
   }
 
+  // --------------------------------------------
+  // disabled fields
+  disabledFields() {
+    this.myReactiveForm.controls.country.disable();
+  }
+
+  // --------------------------------------------
+  // select options change functions
   changeMaritalStatus(e: any) {
     this.myReactiveForm.value.MaritalStatus?.setValue(e.target.value);
     console.log(this.myReactiveForm.get('MaritalStatus'));
   }
 
-  // request to server
+  changeGender(e: any) {
+    this.myReactiveForm.value.gender?.setValue(e.target.value);
+    console.log(this.myReactiveForm.get('gender'));
+  }
+
+  // --------------------------------------------
+  // enable or disable the passport fields on the basis of the checkbox
+  passportClick(e: any) {
+    console.log(e.target.checked);
+    console.log(`checkbox clicked`);
+
+    if (e.target.checked) {
+      //enabling inputs
+      this.myReactiveForm.controls.country.enable();
+      this.myReactiveForm.controls.passport.enable();
+      this.myReactiveForm.controls.issueddate.enable();
+      this.myReactiveForm.controls.expirationdate.enable();
+      this.myReactiveForm.controls.issuedby.enable();
+
+      // applying validations to inputs
+      this.myReactiveForm
+        .get('country')
+        .setValidators([
+          Validators.required,
+          Validators.pattern('^[a-zA-Z]{1,}$'),
+        ]);
+      this.myReactiveForm
+        .get('passport')
+        .setValidators([
+          Validators.pattern('^[A-PR-WYa-pr-wy][1-9]\\d\\s?\\d{4}[1-9]$'),
+        ]);
+      this.myReactiveForm
+        .get('issueddate')
+        .setValidators([Validators.required]);
+      this.myReactiveForm
+        .get('expirationdate')
+        .setValidators([Validators.required]);
+      this.myReactiveForm
+        .get('issuedby')
+        .setValidators([
+          Validators.required,
+          Validators.pattern('^[a-zA-Z]{1,}$'),
+        ]);
+
+      // updating the inputs after alteration
+      this.myReactiveForm.get('country').updateValueAndValidity();
+      this.myReactiveForm.get('passport').updateValueAndValidity();
+      this.myReactiveForm.get('issueddate').updateValueAndValidity();
+      this.myReactiveForm.get('expirationdate').updateValueAndValidity();
+      this.myReactiveForm.get('issuedby').updateValueAndValidity();
+    } else {
+      //country
+      this.myReactiveForm.get('country').clearValidators();
+      this.myReactiveForm.controls.country?.setValue('');
+      this.myReactiveForm.controls.country.disable();
+      this.myReactiveForm.get('country').updateValueAndValidity();
+
+      //passport
+      this.myReactiveForm.get('passport').clearValidators();
+      this.myReactiveForm.controls.passport?.setValue('');
+      this.myReactiveForm.controls.passport.disable();
+      this.myReactiveForm.get('passport').updateValueAndValidity();
+
+      //issued date
+      this.myReactiveForm.get('issueddate').clearValidators();
+      this.myReactiveForm.controls.issueddate?.setValue('');
+      this.myReactiveForm.controls.issueddate.disable();
+      this.myReactiveForm.get('issueddate').updateValueAndValidity();
+
+      //expiration date
+      this.myReactiveForm.get('expirationdate').clearValidators();
+      this.myReactiveForm.controls.expirationdate?.setValue('');
+      this.myReactiveForm.controls.expirationdate.disable();
+      this.myReactiveForm.get('expirationdate').updateValueAndValidity();
+
+      //issued by
+      this.myReactiveForm.get('issuedby').clearValidators();
+      this.myReactiveForm.controls.issuedby?.setValue('');
+      this.myReactiveForm.controls.issuedby.disable();
+      this.myReactiveForm.get('issuedby').updateValueAndValidity();
+    }
+  }
+
+  // --------------------------------------------
+  // checkboxes functions
+  isInjuredFcn(e: any) {
+    console.log(e.target.value);
+    this.myReactiveForm.controls.isInjured?.setValue(e.target.value);
+  }
+
+  isIllFcn(e: any) {
+    console.log(e.target.value);
+    this.myReactiveForm.controls.isIll?.setValue(e.target.value);
+  }
+
+  isDisabledFcn(e: any) {
+    console.log(e.target.value);
+    this.myReactiveForm.controls.isDisabled?.setValue(e.target.value);
+  }
+
+  isMedicalAlertFcn(e: any) {
+    console.log(e.target.value);
+    this.myReactiveForm.controls.isMedicalAlert?.setValue(e.target.value);
+  }
+
+  // --------------------------------------------
+  // request to service layer
   onSubmit() {
-    // this.ngOnInit();
     this.submitted = true;
-    //window.location.reload();
-    console.log(this.submitted);
-    console.log(this.myReactiveForm.value);
 
     if (this.myReactiveForm.invalid) {
       return;
     }
-    console.log('hello');
-    this.user.savePersonalDetails(this.myReactiveForm.value);
+
+    this.responsePayload = this.user.savePersonalDetails(
+      this.myReactiveForm.value
+    );
+
+    sessionStorage.setItem('emp_id', this.responsePayload.emp_id);
+    sessionStorage.setItem('stage', 'PERSONAL_INFO');
   }
 }

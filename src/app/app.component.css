@@ -75,7 +75,8 @@ table th
 
 
 .input_box input:focus ~ label,
-.input_box input:valid ~ label
+.input_box input:valid ~ label,
+.input_box select:focus ~ label
 {
    top: -18px;
    left: 0;

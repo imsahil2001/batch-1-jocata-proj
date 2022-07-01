@@ -110,7 +110,7 @@
                 id=""
                 formControlName="MaritalStatus"
               >
-                <option value="" disabled>Marital Status</option>
+                <option value="" disabled>Select Marital Status</option>
                 <option
                   *ngFor="let status of maritalStatusList"
                   [ngValue]="status"
@@ -119,6 +119,9 @@
                   {{ status }}
                 </option>
               </select>
+              <label for="" class="date-label">
+                Marital Status <span style="color: red">*</span>
+              </label>
               <div
                 class="validation_popup"
                 *ngIf="
@@ -202,9 +205,19 @@
 
           <td style="width: 30%">
             <div class="input_box">
-              <select class="select" name="" id="">
+              <select class="select" name="" id="" formControlName="state">
                 <option value="">State</option>
               </select>
+              <div
+                class="validation_popup"
+                *ngIf="
+                  (myReactiveForm.get('state').invalid &&
+                    myReactiveForm.get('state').touched) ||
+                  (submitted && myReactiveForm.get('state').invalid)
+                "
+              >
+                Please enter a valid State name
+              </div>
             </div>
           </td>
         </tr>
@@ -212,9 +225,19 @@
         <tr>
           <td>
             <div class="input_box">
-              <select class="select" name="" id="">
+              <select class="select" name="" id="" formControlName="city">
                 <option value="">City</option>
               </select>
+              <div
+                class="validation_popup"
+                *ngIf="
+                  (myReactiveForm.get('city').invalid &&
+                    myReactiveForm.get('city').touched) ||
+                  (submitted && myReactiveForm.get('city').invalid)
+                "
+              >
+                Please enter a valid City name
+              </div>
             </div>
           </td>
           <td>
@@ -283,9 +306,19 @@
 
           <td style="width: 30%">
             <div class="input_box">
-              <select class="select" name="" id="">
+              <select class="select" name="" id="" formControlName="state">
                 <option value="">State</option>
               </select>
+              <div
+                class="validation_popup"
+                *ngIf="
+                  (myReactiveForm.get('state').invalid &&
+                    myReactiveForm.get('state').touched) ||
+                  (submitted && myReactiveForm.get('state').invalid)
+                "
+              >
+                Please enter a valid State name
+              </div>
             </div>
           </td>
         </tr>
@@ -293,9 +326,19 @@
         <tr>
           <td>
             <div class="input_box">
-              <select class="select" name="" id="">
+              <select class="select" name="" id="" formControlName="city">
                 <option value="">City</option>
               </select>
+              <div
+                class="validation_popup"
+                *ngIf="
+                  (myReactiveForm.get('city').invalid &&
+                    myReactiveForm.get('city').touched) ||
+                  (submitted && myReactiveForm.get('city').invalid)
+                "
+              >
+                Please enter a valid City name
+              </div>
             </div>
           </td>
           <td>
@@ -448,17 +491,37 @@
         <tr>
           <td style="width: 30%">
             <div class="input_box">
-              <select class="select" name="" id="">
+              <select class="select" name="" id="" formControlName="state">
                 <option value="">State</option>
               </select>
+              <div
+                class="validation_popup"
+                *ngIf="
+                  (myReactiveForm.get('state').invalid &&
+                    myReactiveForm.get('state').touched) ||
+                  (submitted && myReactiveForm.get('state').invalid)
+                "
+              >
+                Please enter a valid State name
+              </div>
             </div>
           </td>
 
           <td style="width: 30%">
             <div class="input_box">
-              <select class="select" name="" id="">
+              <select class="select" name="" id="" formControlName="city">
                 <option value="">City</option>
               </select>
+              <div
+                class="validation_popup"
+                *ngIf="
+                  (myReactiveForm.get('city').invalid &&
+                    myReactiveForm.get('city').touched) ||
+                  (submitted && myReactiveForm.get('city').invalid)
+                "
+              >
+                Please enter a valid City name
+              </div>
             </div>
           </td>
 
@@ -485,7 +548,12 @@
     <div class="form_container">
       <h3>Eligibility To Work</h3>
       <p>
-        <input type="checkbox" name="have_a_passport_checkbox" />
+        <input
+          type="checkbox"
+          name="have_a_passport_checkbox"
+          required
+          (click)="passportClick($event)"
+        />
         Yes I have a Passport
       </p>
       <table class="borderless_table">
@@ -493,6 +561,7 @@
           <td style="width: 30%">
             <div class="input_box">
               <input
+                [attr.disabled]="true"
                 type="text "
                 formControlName="country"
                 class="form-control"
@@ -521,6 +590,7 @@
           <td style="width: 30%">
             <div class="input_box">
               <input
+                [attr.disabled]="true"
                 type="text "
                 formControlName="passport"
                 class="form-control"
@@ -545,6 +615,7 @@
           <td style="width: 30%">
             <div class="input_box">
               <input
+                [attr.disabled]="true"
                 type="date"
                 formControlName="issueddate"
                 class="form-control"
@@ -574,6 +645,7 @@
           <td>
             <div class="input_box">
               <input
+                [attr.disabled]="true"
                 type="date"
                 formControlName="expirationdate"
                 class="form-control"
@@ -597,6 +669,7 @@
           <td>
             <div class="input_box">
               <input
+                [attr.disabled]="true"
                 type="text "
                 formControlName="issuedby"
                 class="form-control"
@@ -960,36 +1033,56 @@
         <tr>
           <td>
             <div class="input_box">
-              <select class="select" name="" id="">
-                <option value="">Gender</option>
-                <option value="">Male</option>
-                <option value="">Female</option>
+              <select class="select" name="" id="" formControlName="gender">
+                <option value="">Select a Gender</option>
+                <option
+                  *ngFor="let gender of genderList"
+                  [ngValue]="gender"
+                  (change)="changeGender($event)"
+                >
+                  {{ gender }}
+                </option>
               </select>
+              <label for="" class="date-label">
+                Gender <span style="color: red">*</span>
+              </label>
+              <div
+                class="validation_popup"
+                *ngIf="
+                  (myReactiveForm.get('gender').invalid &&
+                    myReactiveForm.get('gender').touched) ||
+                  (submitted && myReactiveForm.get('gender').invalid)
+                "
+              >
+                Please enter a valid Gender
+              </div>
             </div>
           </td>
 
           <td style="padding-left: 2rem">
             <!-- <div class="input_box"> -->
-            Do you live with effects of an inquiry?
-            <input type="radio" name="inquiry" id="yes" />Yes
-            <input type="radio" name="inquiry" id="no" />No
+            Do you live with effects of an injury?
+            <input
+              type="radio"
+              name="isInjured"
+              value="true"
+              formControlName="isInjured"
+              (click)="isInjuredFcn($event)"
+            />Yes
+            <input
+              (click)="isInjuredFcn($event)"
+              type="radio"
+              name="isInjured"
+              value="false"
+              checked
+            />No
             <!-- </div> -->
           </td>
 
           <td>
             <div class="input_box">
-              <input type="text" formControlName="inquiry" required />
+              <input type="text" formControlName="injuryDetails" required />
               <label for=""> if yes please specify </label>
-              <div
-                class="validation_popup"
-                *ngIf="
-                  (!myReactiveForm.get('inquiry')?.valid &&
-                    myReactiveForm.get('inquiry').touched) ||
-                  (submitted && myReactiveForm.get('inquiry').invalid)
-                "
-              >
-                Please enter valid input
-              </div>
             </div>
           </td>
         </tr>
@@ -998,21 +1091,26 @@
           <td>
             <!-- <div class="input_box"> -->
             Do you live with effects of an illness?
-            <input type="radio" name="illness" id="yes" />Yes
-            <input type="radio" name="illness" id="no" />No
+            <input
+              type="radio"
+              name="isIll"
+              value="true"
+              formControlName="isIll"
+              (click)="isIllFcn($event)"
+            />Yes <input type="radio" name="isIll" value="false" checked />No
             <!-- </div> -->
           </td>
 
           <td>
             <div class="input_box">
-              <input type="text" formControlName="illness" required />
+              <input type="text" formControlName="illnessDetails" required />
               <label for=""> if yes please specify </label>
               <div
                 class="validation_popup"
                 *ngIf="
-                  (!myReactiveForm.get('illness')?.valid &&
-                    myReactiveForm.get('illness').touched) ||
-                  (submitted && myReactiveForm.get('illness').invalid)
+                  (!myReactiveForm.get('illnessDetails')?.valid &&
+                    myReactiveForm.get('illnessDetails').touched) ||
+                  (submitted && myReactiveForm.get('illnessDetails').invalid)
                 "
               >
                 Please enter valid input
@@ -1023,8 +1121,14 @@
           <td style="padding-left: 2rem">
             <!-- <div class="input_box"> -->
             Do you live with effects of a disability?
-            <input type="radio" name="disability" id="yes" />Yes
-            <input type="radio" name="disability" id="no" />No
+            <input
+              type="radio"
+              name="isDisabled"
+              value="true"
+              formControlName="isDisabled"
+              (click)="isDisabledFcn($event)"
+            />Yes
+            <input type="radio" name="isDisabled" value="false" checked />No
             <!-- </div> -->
           </td>
         </tr>
@@ -1032,14 +1136,14 @@
         <tr>
           <td>
             <div class="input_box">
-              <input type="text" formControlName="disability" required />
+              <input type="text" formControlName="disabilityDetails" required />
               <label for=""> if yes please specify </label>
               <div
                 class="validation_popup"
                 *ngIf="
-                  (!myReactiveForm.get('disability')?.valid &&
-                    myReactiveForm.get('disability').touched) ||
-                  (submitted && myReactiveForm.get('disability').invalid)
+                  (!myReactiveForm.get('disabilityDetails')?.valid &&
+                    myReactiveForm.get('disabilityDetails').touched) ||
+                  (submitted && myReactiveForm.get('disabilityDetails').invalid)
                 "
               >
                 Please enter valid input
@@ -1089,9 +1193,15 @@
           </td>
 
           <td style="padding-left: 2rem">
-            Medicine Alert &nbsp;
-            <input type="radio" name="medicine_alert" id="yes" />Yes
-            <input type="radio" name="medicine_alert" id="no" />No
+            Medical Alert &nbsp;
+            <input
+              type="radio"
+              name="isMedicalAlert"
+              value="true"
+              formControlName="isMedicalAlert"
+              (click)="isMedicalAlertFcn($event)"
+            />Yes
+            <input type="radio" name="isMedicalAlert" value="false" checked />No
           </td>
         </tr>
       </table>
@@ -1111,7 +1221,17 @@
         <tr>
           <td>
             <div class="input_box">
-              <input type="text" required />
+              <input type="text" required formControlName="companyname" />
+              <div
+                class="validation_popup"
+                *ngIf="
+                  (myReactiveForm.get('companyname').invalid &&
+                    myReactiveForm.get('companyname').touched) ||
+                  (submitted && myReactiveForm.get('companyname').invalid)
+                "
+              >
+                Invalid Company Name
+              </div>
             </div>
           </td>
           <td>

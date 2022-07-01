@@ -5,12 +5,12 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class UserService {
-  url = 'http://localhost:3000/usersave';
+  baseUrl = 'http://localhost:3000/usersave';
   constructor(private http: HttpClient) {}
 
   savePersonalDetails(data: any) {
     return this.http
-      .post<any>(this.url, JSON.stringify(data))
+      .post<any>(this.baseUrl, JSON.stringify(data))
       .subscribe((response: any) => {
         console.log(response);
       });
