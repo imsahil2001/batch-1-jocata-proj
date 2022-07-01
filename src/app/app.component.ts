@@ -1,6 +1,8 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -8,7 +10,15 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class AppComponent implements OnInit {
   title = 'official_project';
+
+  constructor(private http: HttpClient) {}
+
+  // base url to which request has to be send
+  baseUrl: string = '';
+
   ngOnInit() {}
+
+  // reactive form
   myReactiveForm: any = new FormGroup({
     FirstName: new FormControl('', [
       Validators.pattern('[A-Za-z]{1,32}'),
@@ -184,4 +194,20 @@ export class AppComponent implements OnInit {
       Validators.required,
     ]),
   });
+
+  // request to server
+  onSubmit() {
+    this.http
+      .post<any>(this.baseUrl, JSON.stringify(this.myReactiveForm), {
+        headers: { 'Content-Type': 'application/json' },
+      })
+      .subscribe({
+        next: (response: any) => {
+          console.log(response);
+        },
+        error: (error: any) => {
+          console.log(error);
+        },
+      });
+  }
 }
