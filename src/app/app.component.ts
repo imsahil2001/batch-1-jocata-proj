@@ -313,19 +313,16 @@ export class AppComponent implements OnInit {
   // select options change functions
   changeMaritalStatus(e: any) {
     this.myReactiveForm.value.MaritalStatus?.setValue(e.target.value);
-    console.log(this.myReactiveForm.get('MaritalStatus'));
   }
 
   changeGender(e: any) {
     this.myReactiveForm.value.gender?.setValue(e.target.value);
-    console.log(this.myReactiveForm.get('gender'));
   }
 
   // --------------------------------------------
   // enable or disable the passport fields on the basis of the checkbox
   passportClick(e: any) {
-    console.log(e.target.checked);
-    console.log(`checkbox clicked`);
+    console.log(`passport checkbox clicked`);
 
     if (e.target.checked) {
       //enabling inputs
@@ -402,22 +399,22 @@ export class AppComponent implements OnInit {
   // --------------------------------------------
   // checkboxes functions
   isInjuredFcn(e: any) {
-    console.log(e.target.value);
+
     this.myReactiveForm.controls.isInjured?.setValue(e.target.value);
   }
 
   isIllFcn(e: any) {
-    console.log(e.target.value);
+
     this.myReactiveForm.controls.isIll?.setValue(e.target.value);
   }
 
   isDisabledFcn(e: any) {
-    console.log(e.target.value);
+
     this.myReactiveForm.controls.isDisabled?.setValue(e.target.value);
   }
 
   isMedicalAlertFcn(e: any) {
-    console.log(e.target.value);
+
     this.myReactiveForm.controls.isMedicalAlert?.setValue(e.target.value);
   }
 
@@ -448,10 +445,10 @@ export class AppComponent implements OnInit {
   };
 
   getStates() {
-    // console.log(e.target.value);
+
     console.log(this.selectedState);
 
-    // this.myReactiveForm['state'].setValue(selected.id);
+
 
     let headers = new HttpHeaders({
       'X-Powered-By': 'Express',
@@ -480,7 +477,7 @@ export class AppComponent implements OnInit {
         this.cityList.push(...data.data);
         console.log(this.cityList);
       });
-    // const headers : any = { "X-CSCAPI-KEY : "API_KEY" };
+
   }
 
   //request payload is made from formGroup 
