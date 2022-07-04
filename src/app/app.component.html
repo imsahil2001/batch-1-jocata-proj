@@ -1,8 +1,7 @@
 <div class="main_container">
-  <!-- <div *ngIf="submitted">gyfewtvtdstctrcwdhyf</div> -->
   <form [formGroup]="myReactiveForm">
     <!-- Form starts here -->
-    <!-- <div class="form_container" (ngSubmit)="onSubmit()"> -->
+
     <div class="form_container">
       <h3>Personal Information</h3>
       <table class="borderless_table">
@@ -205,8 +204,18 @@
 
           <td style="width: 30%">
             <div class="input_box">
-              <select class="select" name="" id="" formControlName="state">
-                <option value="">State</option>
+              <select
+                [(ngModel)]="selectedState"
+                class="select"
+                name=""
+                id=""
+                formControlName="state"
+                (change)="getStates()"
+              >
+                <option value="" disabled>State</option>
+                <option *ngFor="let state of stateList">
+                  {{ state.name }}
+                </option>
               </select>
               <div
                 class="validation_popup"
@@ -227,6 +236,9 @@
             <div class="input_box">
               <select class="select" name="" id="" formControlName="city">
                 <option value="">City</option>
+                <option *ngFor="let city of cityList" [ngValue]="city">
+                  {{ city }}
+                </option>
               </select>
               <div
                 class="validation_popup"
@@ -328,6 +340,9 @@
             <div class="input_box">
               <select class="select" name="" id="" formControlName="city">
                 <option value="">City</option>
+                <option *ngFor="let city of cityList">
+                  {{ city }}
+                </option>
               </select>
               <div
                 class="validation_popup"
@@ -804,10 +819,10 @@
       <table class="borderred_table" border="1">
         <tr>
           <th style="width: 15%">Qualification</th>
-          <th align="left" style="width: 30%">Major</th>
-          <th align="left" style="width: 30%">Institution</th>
-          <th align="left" style="width: 20%">Year of Completion</th>
-          <th align="left" style="width: 25%">State/Country</th>
+          <th align="left" style="width: 28%">Major</th>
+          <th align="left" style="width: 28%">Institution</th>
+          <th align="left" style="width: 10%">Year of Completion</th>
+          <th align="left" style="width: 32%">State/Country</th>
         </tr>
 
         <tr>
@@ -1105,7 +1120,7 @@
             <div class="input_box">
               <input type="text" formControlName="illnessDetails" required />
               <label for=""> if yes please specify </label>
-              <div
+              <!-- <div
                 class="validation_popup"
                 *ngIf="
                   (!myReactiveForm.get('illnessDetails')?.valid &&
@@ -1114,7 +1129,7 @@
                 "
               >
                 Please enter valid input
-              </div>
+              </div> -->
             </div>
           </td>
 
@@ -1138,7 +1153,7 @@
             <div class="input_box">
               <input type="text" formControlName="disabilityDetails" required />
               <label for=""> if yes please specify </label>
-              <div
+              <!-- <div
                 class="validation_popup"
                 *ngIf="
                   (!myReactiveForm.get('disabilityDetails')?.valid &&
@@ -1147,7 +1162,7 @@
                 "
               >
                 Please enter valid input
-              </div>
+              </div> -->
             </div>
           </td>
         </tr>
@@ -1160,7 +1175,7 @@
                 Please provide any health information the Company should aware
                 of in the event of emergency e.g. allery to any medicines
               </label>
-              <div
+              <!-- <div
                 class="validation_popup"
                 *ngIf="
                   (!myReactiveForm.get('Healthinfo')?.valid &&
@@ -1169,7 +1184,7 @@
                 "
               >
                 Please enter valid input
-              </div>
+              </div> -->
             </div>
           </td>
         </tr>
@@ -1301,47 +1316,102 @@
     <div class="checkbox_container">
       <h3>Declaration and consent</h3>
       <p class="checkbox-one">
-        <input type="checkbox" name="" id="" />
+        <input
+          type="checkbox"
+          name=""
+          id=""
+          formControlName="declarationCheckboxOne"
+        />
         I declare that to the best of my knowledge all the information I have
         provided is true and is in all respects correct. I understand that if
         any false information is given or any material fact suppressed
         disciplinary action- including dismissal maybe undertaken.
       </p>
+      <div
+        class="validation_popup_checkbox"
+        *ngIf="
+          submitted &&
+          myReactiveForm.get('declarationCheckboxOne').value == false
+        "
+      >
+        Checkbox required
+      </div>
 
       <p class="checkbox-second">
-        <input type="checkbox" name="" id="" />
+        <input
+          type="checkbox"
+          name=""
+          id=""
+          formControlName="declarationCheckboxSecond"
+        />
         I acknowledge that the information I have applied on this form, and that
         the company gathers about me during the course of my employment with the
         company, will be retained by the company for the purpose of considering
         and evaluating my application for employment for any future
         applications.
       </p>
+      <div
+        class="validation_popup_checkbox"
+        *ngIf="
+          submitted &&
+          myReactiveForm.get('declarationCheckboxSecond').value == false
+        "
+      >
+        Checkbox required
+      </div>
     </div>
 
     <div class="checkbox_container">
       <h3>Qualifications/ Certificates/ Professional resignations:</h3>
       <p class="checkbox-one">
-        <input type="checkbox" name="" id="" />
+        <input
+          type="checkbox"
+          name=""
+          id=""
+          formControlName="beingQualifiedCheckbox"
+        />
         I authorised Jocata to consent the body Institution(s) stated herein,
         and I further authorise a designated Office of the institution to
         provide evidence to Jocata that I qualified for and was awarded the
         qualification / certificate / professional resignation as stated. The
         authority shall remain
       </p>
+      <div
+        class="validation_popup_checkbox"
+        *ngIf="
+          submitted &&
+          myReactiveForm.get('beingQualifiedCheckbox').value == false
+        "
+      >
+        Checkbox required
+      </div>
     </div>
 
     <div class="checkbox_container">
       <h3>Other</h3>
       <p class="checkbox-one">
-        <input type="checkbox" name="" id="" />
+        <input
+          type="checkbox"
+          name=""
+          id=""
+          formControlName="otherConsentCheckbox"
+        />
         I give consent for the company to verify validate my work eligibility.
         In addition I gave consent to on-going Health and General checks and
         monitoring if required for the role.
       </p>
+      <div
+        class="validation_popup_checkbox"
+        *ngIf="
+          submitted && myReactiveForm.get('otherConsentCheckbox').value == false
+        "
+      >
+        Checkbox required
+      </div>
     </div>
 
     <div class="button-container">
-      <!-- <button style="margin-right: 1rem" class="outline-btn">Exit</button> -->
+      <button style="margin-right: 1rem" class="outline-btn">Exit</button>
 
       <!-- (click)="onSubmit()" -->
       <div class="right-buttons">

@@ -13,7 +13,7 @@ import { UserService } from './user.service';
 export class AppComponent implements OnInit {
   title = 'official_project';
 
-  constructor(private http: HttpClient, private user: UserService) {}
+  constructor(private http: HttpClient, private userservice: UserService) { }
 
   // base url to which request has to be send
   submitted: any = false;
@@ -40,6 +40,39 @@ export class AppComponent implements OnInit {
     'Bisexual',
     'Transgender',
   ];
+
+  cityList: any[] = [];
+
+  selectedState: any = '';
+  stateList: any = [
+    {
+      id: 1, name: 'Andhra Pradesh'
+    }
+    ,
+    {
+      id: 2, name: 'Arunachal Pradesh'
+    }
+    ,
+    {
+      id: 3, name: 'Assam'
+    }
+    ,
+    {
+      id: 4, name: 'Bihar'
+    }
+    ,
+    {
+      id: 5, name: 'Haryana'
+    }
+    ,
+    {
+      id: 6, name: 'Punjab'
+    }
+    ,
+  ]
+
+
+
 
   // --------------------------------------------
   // form group
@@ -148,8 +181,8 @@ export class AppComponent implements OnInit {
         Validators.required,
       ]),
       date: new FormControl('', [
-        Validators.pattern('^(2|1){1}[0-9]{3}.[0-9]{2}.[0-9]{2}.*$'),
         Validators.required,
+        Validators.pattern('^(2|1){1}[0-9]{3}.[0-9]{2}.[0-9]{2}.*$'),
       ]),
       honour: new FormControl('', [
         Validators.pattern('[A-Za-z]{1,32}'),
@@ -233,6 +266,10 @@ export class AppComponent implements OnInit {
         Validators.pattern('^(?!d+$)(?:[a-zA-Z][a-zA-Z @&$,]*)?$'),
         Validators.required,
       ]),
+      declarationCheckboxOne: new FormControl('', [Validators.required]),
+      declarationCheckboxSecond: new FormControl(false, [Validators.required]),
+      beingQualifiedCheckbox: new FormControl('', [Validators.required]),
+      otherConsentCheckbox: new FormControl('', [Validators.required]),
     });
   }
 
@@ -359,15 +396,60 @@ export class AppComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
 
-    if (this.myReactiveForm.invalid) {
-      return;
-    }
+    // if (this.myReactiveForm.invalid) {
+    //   return;
+    // }
 
-    this.responsePayload = this.user.savePersonalDetails(
-      this.myReactiveForm.value
-    );
+    console.log(this.myReactiveForm.get('declarationCheckboxSecond').value);
+
+    console.log(this.myReactiveForm.value);
+
+    // this.responsePayload = this.userservice.savePersonalDetails(
+    //   this.myReactiveForm.value
+    // );
 
     sessionStorage.setItem('emp_id', this.responsePayload.emp_id);
     sessionStorage.setItem('stage', 'PERSONAL_INFO');
+  }
+
+  obj: any = {
+    country: 'India',
+    state: 'Lagos',
+  };
+
+  getStates() {
+    // console.log(e.target.value);
+    console.log(this.selectedState);
+
+    // this.myReactiveForm['state'].setValue(selected.id);
+
+    let headers = new HttpHeaders({
+      'X-Powered-By': 'Express',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Headers': '*',
+      'Content-Type': 'application/json',
+      'charset': 'utf-8',
+      'Content-Length': '157',
+      'ETag': 'W/"9d-laheLqB06/2L4F8Bwm6wiZQbEaE"',
+      'Date': 'Sun, 30 May 2021 00:07:39 GMT',
+      'Connection': 'keep-alive',
+    });
+
+    this.obj.state = this.selectedState;
+
+    let options = { headers: headers };
+    this.http
+      .post<any>(
+        'https://countriesnow.space/api/v0.1/countries/state/cities',
+        JSON.stringify(this.obj),
+        options
+      )
+      .subscribe((data: any) => {
+        console.log(data.data);
+        this.cityList.length = 0;
+        this.cityList.push(...data.data);
+        console.log(this.cityList);
+      });
+    // const headers : any = { "X-CSCAPI-KEY : "API_KEY" };
   }
 }
