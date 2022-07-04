@@ -33,8 +33,14 @@
           </td>
           <td>
             <div class="input_box">
-              <input type="text" required />
+              <input type="text" required formControlName="MiddleName" />
               <label for=""> Middle Name </label>
+              <div
+                class="validation_popup"
+                *ngIf="submitted && myReactiveForm.get('MiddleName').invalid"
+              >
+                Please enter valid first Name input
+              </div>
             </div>
           </td>
 
@@ -355,9 +361,6 @@
                 formControlName="permanentcity"
               >
                 <option value="">City</option>
-                <option *ngFor="let city of cityList">
-                  {{ city }}
-                </option>
               </select>
               <div
                 class="validation_popup"
@@ -443,13 +446,13 @@
 
           <td style="width: 30%">
             <div class="input_box">
-              <input type="number" formControlName="phone1" required />
+              <input type="number" formControlName="emergencyphone1" required />
               <div
                 class="validation_popup"
                 *ngIf="
-                  (myReactiveForm.get('phone1').touched &&
-                    myReactiveForm.get('phone1').invalid) ||
-                  (submitted && myReactiveForm.get('phone1').invalid)
+                  (myReactiveForm.get('emergencyphone1').touched &&
+                    myReactiveForm.get('emergencyphone1').invalid) ||
+                  (submitted && myReactiveForm.get('emergencyphone1').invalid)
                 "
               >
                 Please enter valid Phone number
@@ -465,12 +468,12 @@
         <tr>
           <td style="width: 30%">
             <div class="input_box">
-              <input type="number" formControlName="phone2" required />
+              <input type="number" formControlName="emergencyphone2" required />
               <div
                 class="validation_popup"
                 *ngIf="
-                  myReactiveForm.get('phone2').touched &&
-                  myReactiveForm.get('phone2').invalid
+                  myReactiveForm.get('emergencyphone2').touched &&
+                  myReactiveForm.get('emergencyphone2').invalid
                 "
               >
                 Please enter valid Phone number
@@ -521,33 +524,43 @@
         <tr>
           <td style="width: 30%">
             <div class="input_box">
-              <select class="select" name="" id="" formControlName="state">
+              <select
+                class="select"
+                name=""
+                id=""
+                formControlName="emergencystate"
+              >
                 <option value="">State</option>
               </select>
               <div
                 class="validation_popup"
                 *ngIf="
-                  (myReactiveForm.get('state').invalid &&
-                    myReactiveForm.get('state').touched) ||
-                  (submitted && myReactiveForm.get('state').invalid)
+                  (myReactiveForm.get('emergencystate').invalid &&
+                    myReactiveForm.get('emergencystate').touched) ||
+                  (submitted && myReactiveForm.get('emergencystate').invalid)
                 "
               >
-                Please enter a valid State name
+                emergencystate Please enter a valid State name
               </div>
             </div>
           </td>
 
           <td style="width: 30%">
             <div class="input_box">
-              <select class="select" name="" id="" formControlName="city">
+              <select
+                class="select"
+                name=""
+                id=""
+                formControlName="emergencycity"
+              >
                 <option value="">City</option>
               </select>
               <div
                 class="validation_popup"
                 *ngIf="
-                  (myReactiveForm.get('city').invalid &&
-                    myReactiveForm.get('city').touched) ||
-                  (submitted && myReactiveForm.get('city').invalid)
+                  (myReactiveForm.get('emergencycity').invalid &&
+                    myReactiveForm.get('emergencycity').touched) ||
+                  (submitted && myReactiveForm.get('emergencycity').invalid)
                 "
               >
                 Please enter a valid City name
@@ -904,13 +917,18 @@
           </td>
           <td>
             <div class="input_box">
-              <input type="text" formControlName="state" required />
+              <input
+                type="text"
+                formControlName="qualificationstate"
+                required
+              />
               <div
                 class="validation_popup"
                 *ngIf="
-                  (!myReactiveForm.get('state').valid &&
-                    myReactiveForm.get('state').touched) ||
-                  (submitted && myReactiveForm.get('state').invalid)
+                  (!myReactiveForm.get('qualificationstate').valid &&
+                    myReactiveForm.get('qualificationstate').touched) ||
+                  (submitted &&
+                    myReactiveForm.get('qualificationstate').invalid)
                 "
               >
                 Invalid
@@ -926,8 +944,10 @@
       <table class="borderred_table" border="1">
         <tr>
           <th style="width: 20%">Membership(Abbreivation)</th>
-          <th align="left">Organisation Membership(Full title)</th>
-          <th align="left">Membership Date</th>
+          <th style="width: 40%" align="left">
+            Organisation Membership(Full title)
+          </th>
+          <th style="width: 20%" align="left">Membership Date</th>
         </tr>
 
         <tr>
@@ -964,14 +984,19 @@
           </td>
           <td>
             <div class="input_box">
-              <input type="date" required />
+              <input
+                type="text"
+                onfocus="this.type='date'"
+                required
+                formControlName="membershipdate"
+              />
               <label for="" class="date-label">Membership Date </label>
               <div
                 class="validation_popup"
                 *ngIf="
-                  (!myReactiveForm.get('date').valid &&
-                    myReactiveForm.get('date').touched) ||
-                  (submitted && myReactiveForm.get('date').invalid)
+                  (!myReactiveForm.get('membershipdate').valid &&
+                    myReactiveForm.get('membershipdate').touched) ||
+                  (submitted && myReactiveForm.get('membershipdate').invalid)
                 "
               >
                 Please enter valid date
