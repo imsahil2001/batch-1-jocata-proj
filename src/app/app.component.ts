@@ -77,6 +77,7 @@ export class AppComponent implements OnInit {
   // --------------------------------------------
   // form group
   myReactiveForm: any = {};
+  requestPayLoad: any = {};
 
   ngOnInit() {
     // reactive form
@@ -89,6 +90,9 @@ export class AppComponent implements OnInit {
       LastName: new FormControl('', [
         Validators.pattern('[A-Za-z]{1,32}'),
         Validators.required,
+      ]),
+      MiddleName: new FormControl(null, [
+        Validators.pattern('[A-Za-z]{1,32}'),
       ]),
       PhoneNumber: new FormControl('', [
         Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$'),
@@ -200,11 +204,19 @@ export class AppComponent implements OnInit {
         Validators.pattern('[0-9]{1,4}'),
         Validators.required,
       ]),
-      state: new FormControl('', [
+      currentstate: new FormControl('', [
         Validators.pattern('[A-Za-z]{1,32}'),
         Validators.required,
       ]),
-      city: new FormControl('', [
+      currentcity: new FormControl('', [
+        Validators.pattern('[A-Za-z]{1,32}'),
+        Validators.required,
+      ]),
+      permanentstate: new FormControl('', [
+        Validators.pattern('[A-Za-z]{1,32}'),
+        Validators.required,
+      ]),
+      permanentcity: new FormControl('', [
         Validators.pattern('[A-Za-z]{1,32}'),
         Validators.required,
       ]),
@@ -272,6 +284,12 @@ export class AppComponent implements OnInit {
       otherConsentCheckbox: new FormControl('', [Validators.required]),
     });
   }
+
+  // --------------------------------------------
+  // Request Payload
+
+
+
 
   // --------------------------------------------
   // disabled fields
@@ -394,6 +412,8 @@ export class AppComponent implements OnInit {
   // --------------------------------------------
   // request to service layer
   onSubmit() {
+    this.makePayLoad();
+    console.log(this.requestPayLoad);
     this.submitted = true;
 
     // if (this.myReactiveForm.invalid) {
@@ -452,4 +472,99 @@ export class AppComponent implements OnInit {
       });
     // const headers : any = { "X-CSCAPI-KEY : "API_KEY" };
   }
+
+  //request payload is made from formGroup 
+  makePayLoad() {
+    this.requestPayLoad = {
+      empId: "1015",
+      fname: this.myReactiveForm.get('FirstName')?.value,
+      mname: this.myReactiveForm.get('MiddleName')?.value,
+      lname: this.myReactiveForm.get('LastName')?.value,
+      dob: this.myReactiveForm.get('DOB')?.value,
+      phno: this.myReactiveForm.get('PhoneNumber')?.value,
+      maritalstatus: this.myReactiveForm.get('MaritalStatus')?.value,
+      emailid: this.myReactiveForm.get('Email')?.value,
+      addresses: [
+        {
+          address1: this.myReactiveForm.get('CAddress')?.value,
+          address2: this.myReactiveForm.get('CAddress1')?.value,
+          city: this.myReactiveForm.get('currentstate')?.value,
+          state: this.myReactiveForm.get('currentcity')?.value,
+          pincode: this.myReactiveForm.get('CPinCode')?.value,
+          addressType: 'current'
+        },
+        {
+          address1: this.myReactiveForm.get('PAddress')?.value,
+          address2: this.myReactiveForm.get('PAddress1')?.value,
+          city: this.myReactiveForm.get('permanentcity')?.value,
+          state: this.myReactiveForm.get('permanentstate')?.value,
+          pincode: this.myReactiveForm.get('PinCode')?.value,
+          addressType: 'permanent'
+        }
+      ],
+      emergencyName: this.myReactiveForm.get('emergencyName')?.value,
+      emergencyRelation: this.myReactiveForm.get('relation')?.value,
+      emergencyPh1: this.myReactiveForm.get('phone1')?.value,
+      emergencyPh2: this.myReactiveForm.get('phone2')?.value,
+      emergencyAddr1: this.myReactiveForm.get('address1')?.value,
+      emergencyAddr2: this.myReactiveForm.get('address2')?.value,
+      emergencyCity: this.myReactiveForm.get('FirstName')?.value,
+      emergencyState: this.myReactiveForm.get('FirstName')?.value,
+      emergencyPincode: this.myReactiveForm.get('pin')?.value,
+      citizenshipCountry: this.myReactiveForm.get('country')?.value,
+      passportNumber: this.myReactiveForm.get('passport')?.value,
+      passportIssueDate: this.myReactiveForm.get('issueddate')?.value,
+      passportExpiryDate: this.myReactiveForm.get('expirationdate')?.value,
+      passportIssuedBy: this.myReactiveForm.get('issuedby')?.value,
+      panNumber: this.myReactiveForm.get('pan')?.value,
+      nameOnPan: this.myReactiveForm.get('panname')?.value,
+      aadharNumber: this.myReactiveForm.get('aadhar')?.value,
+      nameOnAadhar: this.myReactiveForm.get('aadharname')?.value,
+      qualifications: [
+        {
+          qualification: this.myReactiveForm.get('qualification')?.value,
+          major: this.myReactiveForm.get('major')?.value,
+          institute: this.myReactiveForm.get('institute')?.value,
+          yearOfCompletion: this.myReactiveForm.get('year')?.value,
+          stateOrCountry: this.myReactiveForm.get('state')?.value
+        }
+      ],
+      memberships: [
+        {
+          membership: this.myReactiveForm.get('Membership')?.value,
+          organizationmembership: this.myReactiveForm.get('OrgMembership')?.value,
+          membershipdate: this.myReactiveForm.get('date')?.value
+        }
+      ],
+      honors: [
+        {
+          honour: this.myReactiveForm.get('honour')?.value,
+          honourOfAward: this.myReactiveForm.get('honouraward')?.value,
+          honourGranter: this.myReactiveForm.get('grantor')?.value,
+          honourReceivedYear: this.myReactiveForm.get('year')?.value
+        }
+      ],
+      previousemploymentdetails: [
+        {
+          From: this.myReactiveForm.get('fromyr')?.value,
+          To: this.myReactiveForm.get('toyr')?.value,
+          location: this.myReactiveForm.get('location')?.value,
+          designation: this.myReactiveForm.get('designation')?.value,
+          companyName: this.myReactiveForm.get('companyname')?.value
+        }
+      ],
+      gender: this.myReactiveForm.get('gender')?.value,
+      bloodgroup: this.myReactiveForm.get('FirstName')?.value,
+      isLivingWithInjury: this.myReactiveForm.get('isInjured')?.value,
+      injuryDetails: this.myReactiveForm.get('injuryDetails')?.value,
+      isLivingWithIllness: this.myReactiveForm.get('isIll')?.value,
+      illnessDetails: this.myReactiveForm.get('illnessDetails')?.value,
+      isLivingWithDisability: this.myReactiveForm.get('isDisabled')?.value,
+      disabilityDetails: this.myReactiveForm.get('disabilityDetails')?.value,
+      allergyToMedicines: this.myReactiveForm.get('Healthinfo')?.value,
+      medicalAlert: this.myReactiveForm.get('isMedicalAlert')?.value
+    }
+  }
 }
+
+

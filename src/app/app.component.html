@@ -209,7 +209,7 @@
                 class="select"
                 name=""
                 id=""
-                formControlName="state"
+                formControlName="currentstate"
                 (change)="getStates()"
               >
                 <option value="" disabled>State</option>
@@ -220,9 +220,9 @@
               <div
                 class="validation_popup"
                 *ngIf="
-                  (myReactiveForm.get('state').invalid &&
-                    myReactiveForm.get('state').touched) ||
-                  (submitted && myReactiveForm.get('state').invalid)
+                  (myReactiveForm.get('currentstate').invalid &&
+                    myReactiveForm.get('currentstate').touched) ||
+                  (submitted && myReactiveForm.get('currentstate').invalid)
                 "
               >
                 Please enter a valid State name
@@ -234,7 +234,12 @@
         <tr>
           <td>
             <div class="input_box">
-              <select class="select" name="" id="" formControlName="city">
+              <select
+                class="select"
+                name=""
+                id=""
+                formControlName="currentcity"
+              >
                 <option value="">City</option>
                 <option *ngFor="let city of cityList" [ngValue]="city">
                   {{ city }}
@@ -243,9 +248,9 @@
               <div
                 class="validation_popup"
                 *ngIf="
-                  (myReactiveForm.get('city').invalid &&
-                    myReactiveForm.get('city').touched) ||
-                  (submitted && myReactiveForm.get('city').invalid)
+                  (myReactiveForm.get('currentcity').invalid &&
+                    myReactiveForm.get('currentcity').touched) ||
+                  (submitted && myReactiveForm.get('currentcity').invalid)
                 "
               >
                 Please enter a valid City name
@@ -318,15 +323,20 @@
 
           <td style="width: 30%">
             <div class="input_box">
-              <select class="select" name="" id="" formControlName="state">
+              <select
+                class="select"
+                name=""
+                id=""
+                formControlName="permanentstate"
+              >
                 <option value="">State</option>
               </select>
               <div
                 class="validation_popup"
                 *ngIf="
-                  (myReactiveForm.get('state').invalid &&
-                    myReactiveForm.get('state').touched) ||
-                  (submitted && myReactiveForm.get('state').invalid)
+                  (myReactiveForm.get('permanentstate').invalid &&
+                    myReactiveForm.get('permanentstate').touched) ||
+                  (submitted && myReactiveForm.get('permanentstate').invalid)
                 "
               >
                 Please enter a valid State name
@@ -338,7 +348,12 @@
         <tr>
           <td>
             <div class="input_box">
-              <select class="select" name="" id="" formControlName="city">
+              <select
+                class="select"
+                name=""
+                id=""
+                formControlName="permanentcity"
+              >
                 <option value="">City</option>
                 <option *ngFor="let city of cityList">
                   {{ city }}
@@ -347,9 +362,9 @@
               <div
                 class="validation_popup"
                 *ngIf="
-                  (myReactiveForm.get('city').invalid &&
-                    myReactiveForm.get('city').touched) ||
-                  (submitted && myReactiveForm.get('city').invalid)
+                  (myReactiveForm.get('permanentcity').invalid &&
+                    myReactiveForm.get('permanentcity').touched) ||
+                  (submitted && myReactiveForm.get('permanentcity').invalid)
                 "
               >
                 Please enter a valid City name
