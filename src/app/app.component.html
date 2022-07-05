@@ -216,11 +216,12 @@
                 name=""
                 id=""
                 formControlName="currentstate"
-               
               >
-                <option value="" disabled>State</option>
-                
+                <option disabled>State</option>
               </select>
+              <label for="" class="date-label">
+                State <span style="color: red">*</span>
+              </label>
               <div
                 class="validation_popup"
                 *ngIf="
@@ -244,9 +245,11 @@
                 id=""
                 formControlName="currentcity"
               >
-                <option value="">City</option>
-               
+                <option disabled>City</option>
               </select>
+              <label for="" class="date-label">
+                City <span style="color: red">*</span>
+              </label>
               <div
                 class="validation_popup"
                 *ngIf="
@@ -331,8 +334,11 @@
                 id=""
                 formControlName="permanentstate"
               >
-                <option value="">State</option>
+                <option disabled>State</option>
               </select>
+              <label for="" class="date-label">
+                State <span style="color: red">*</span>
+              </label>
               <div
                 class="validation_popup"
                 *ngIf="
@@ -356,8 +362,11 @@
                 id=""
                 formControlName="permanentcity"
               >
-                <option value="">City</option>
+                <option disabled>Permanent City</option>
               </select>
+              <label for="" class="date-label">
+                City <span style="color: red">*</span>
+              </label>
               <div
                 class="validation_popup"
                 *ngIf="
@@ -526,8 +535,11 @@
                 id=""
                 formControlName="emergencystate"
               >
-                <option value="">State</option>
+                <option disabled>State</option>
               </select>
+              <label for="" class="date-label">
+                State <span style="color: red">*</span>
+              </label>
               <div
                 class="validation_popup"
                 *ngIf="
@@ -536,7 +548,7 @@
                   (submitted && myReactiveForm.get('emergencystate').invalid)
                 "
               >
-                emergencystate Please enter a valid State name
+                Please enter a valid State name
               </div>
             </div>
           </td>
@@ -549,8 +561,11 @@
                 id=""
                 formControlName="emergencycity"
               >
-                <option value="">City</option>
+                <option disabled>City</option>
               </select>
+              <label for="" class="date-label">
+                City <span style="color: red">*</span>
+              </label>
               <div
                 class="validation_popup"
                 *ngIf="
@@ -601,7 +616,7 @@
             <div class="input_box">
               <input
                 [attr.disabled]="true"
-                type="text "
+                type="text"
                 formControlName="country"
                 class="form-control"
                 required
@@ -630,7 +645,7 @@
             <div class="input_box">
               <input
                 [attr.disabled]="true"
-                type="text "
+                type="text"
                 formControlName="passport"
                 class="form-control"
                 required
@@ -709,7 +724,7 @@
             <div class="input_box">
               <input
                 [attr.disabled]="true"
-                type="text "
+                type="text"
                 formControlName="issuedby"
                 class="form-control"
                 required
@@ -741,7 +756,7 @@
           <td>
             <div class="input_box">
               <input
-                type="text "
+                type="text"
                 formControlName="pan"
                 class="form-control"
                 required
@@ -764,7 +779,7 @@
           <td>
             <div class="input_box">
               <input
-                type="text "
+                type="text"
                 formControlName="panname"
                 class="form-control"
                 required
@@ -1459,7 +1474,9 @@
         >
           Save
         </button>
-        <!-- <button class="filled-btn" onclick="onSubmit()">Save & Continue</button> -->
+        <button class="filled-btn" (click)="onSubmitAndContinue()">
+          Save & Continue
+        </button>
       </div>
     </div>
   </form>

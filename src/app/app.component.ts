@@ -263,10 +263,10 @@ export class AppComponent implements OnInit {
         Validators.pattern('^(?!d+$)(?:[a-zA-Z][a-zA-Z @&$,]*)?$'),
         Validators.required,
       ]),
-      declarationCheckboxOne: new FormControl(null, [Validators.required]),
+      declarationCheckboxOne: new FormControl(false, [Validators.required]),
       declarationCheckboxSecond: new FormControl(false, [Validators.required]),
-      beingQualifiedCheckbox: new FormControl(null, [Validators.required]),
-      otherConsentCheckbox: new FormControl(null, [Validators.required]),
+      beingQualifiedCheckbox: new FormControl(false, [Validators.required]),
+      otherConsentCheckbox: new FormControl(false, [Validators.required]),
     });
   }
 
@@ -315,6 +315,7 @@ export class AppComponent implements OnInit {
       this.myReactiveForm
         .get('passport')
         .setValidators([
+          Validators.required,
           Validators.pattern('^[A-PR-WYa-pr-wy][1-9]\\d\\s?\\d{4}[1-9]$'),
         ]);
       this.myReactiveForm
@@ -394,31 +395,35 @@ export class AppComponent implements OnInit {
   // --------------------------------------------
   // request to service layer
   onSubmit() {
-    this.makePayLoad();
-    console.log(this.requestPayLoad);
-    this.submitted = true;
+    if (sessionStorage.getItem('emp_id') == null) {
 
-    if (this.myReactiveForm.invalid) {
-      return;
+
+      this.makePayLoad();
+      console.log(this.requestPayLoad);
+      this.submitted = true;
+
+      // if form is invalid it wont get submit
+      if (this.myReactiveForm.invalid) {
+        return;
+      }
+      console.log('submitted');
+
+      // sending payload to backend
+      this.emp_id = this.userservice.savePersonalDetails(
+        this.requestPayLoad
+      );
+
+      // setting session storage 
+      sessionStorage.setItem('emp_id', this.emp_id);
+      sessionStorage.setItem('stage', 'PERSONAL_INFO');
     }
-
-
-    this.emp_id = this.userservice.savePersonalDetails(
-      this.requestPayLoad
-    );
-
-
-    // console.log(this.responsePayload.emp_id);
-
-    sessionStorage.setItem('emp_id', this.emp_id);
-    sessionStorage.setItem('stage', 'PERSONAL_INFO');
   }
 
-  obj: any = {
-    country: 'India',
-    state: 'Lagos',
-  };
-
+  onSubmitAndContinue() {
+    if (sessionStorage.getItem('emp_id') == null) {
+      this.onSubmit();
+    }
+  }
 
 
   //request payload is made from formGroup 
