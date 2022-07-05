@@ -17,11 +17,7 @@ export class AppComponent implements OnInit {
 
   // base url to which request has to be send
   submitted: any = false;
-  responsePayload: any = {
-    emp_id: '',
-    status: '',
-    stage: ''
-  };
+  emp_id: any = 0;
 
   // --------------------------------------------
   //select option list
@@ -343,31 +339,31 @@ export class AppComponent implements OnInit {
     } else {
       //country
       this.myReactiveForm.get('country').clearValidators();
-      this.myReactiveForm.controls.country?.setValue('');
+      this.myReactiveForm.controls.country?.setValue(null);
       this.myReactiveForm.controls.country.disable();
       this.myReactiveForm.get('country').updateValueAndValidity();
 
       //passport
       this.myReactiveForm.get('passport').clearValidators();
-      this.myReactiveForm.controls.passport?.setValue('');
+      this.myReactiveForm.controls.passport?.setValue(null);
       this.myReactiveForm.controls.passport.disable();
       this.myReactiveForm.get('passport').updateValueAndValidity();
 
       //issued date
       this.myReactiveForm.get('issueddate').clearValidators();
-      this.myReactiveForm.controls.issueddate?.setValue('');
+      this.myReactiveForm.controls.issueddate?.setValue(null);
       this.myReactiveForm.controls.issueddate.disable();
       this.myReactiveForm.get('issueddate').updateValueAndValidity();
 
       //expiration date
       this.myReactiveForm.get('expirationdate').clearValidators();
-      this.myReactiveForm.controls.expirationdate?.setValue('');
+      this.myReactiveForm.controls.expirationdate?.setValue(null);
       this.myReactiveForm.controls.expirationdate.disable();
       this.myReactiveForm.get('expirationdate').updateValueAndValidity();
 
       //issued by
       this.myReactiveForm.get('issuedby').clearValidators();
-      this.myReactiveForm.controls.issuedby?.setValue('');
+      this.myReactiveForm.controls.issuedby?.setValue(null);
       this.myReactiveForm.controls.issuedby.disable();
       this.myReactiveForm.get('issuedby').updateValueAndValidity();
     }
@@ -402,19 +398,19 @@ export class AppComponent implements OnInit {
     console.log(this.requestPayLoad);
     this.submitted = true;
 
-    // if (this.myReactiveForm.invalid) {
-    //   return;
-    // }
-    console.log(this.myReactiveForm.value);
+    if (this.myReactiveForm.invalid) {
+      return;
+    }
 
-    this.responsePayload = this.userservice.savePersonalDetails(
+
+    this.emp_id = this.userservice.savePersonalDetails(
       this.requestPayLoad
     );
 
 
-    console.log(this.responsePayload.emp_id);
+    // console.log(this.responsePayload.emp_id);
 
-    sessionStorage.setItem('emp_id', this.responsePayload.emp_id);
+    sessionStorage.setItem('emp_id', this.emp_id);
     sessionStorage.setItem('stage', 'PERSONAL_INFO');
   }
 
@@ -454,69 +450,69 @@ export class AppComponent implements OnInit {
           addressType: 'permanent'
         }
       ],
+
+      emergencyname: this.myReactiveForm.get('emergencyName')?.value,
+      emergencyrelation: this.myReactiveForm.get('relation')?.value,
+      emergencyph1: this.myReactiveForm.get('emergencyphone1')?.value,
+      emergencyph2: this.myReactiveForm.get('emergencyphone2')?.value,
+      emergencyaddr1: this.myReactiveForm.get('address1')?.value,
+      emergencyaddr2: this.myReactiveForm.get('address2')?.value,
+      emergencycity: this.myReactiveForm.get('emergencycity')?.value,
+      emergencystate: this.myReactiveForm.get('emergencystate')?.value,
+      emergencypincode: this.myReactiveForm.get('pin')?.value,
+      citizenshipcountry: this.myReactiveForm.get('country')?.value,
+      passportnumber: this.myReactiveForm.get('passport')?.value,
+      passportissuedate: this.myReactiveForm.get('issueddate')?.value,
+      passportexpirydate: this.myReactiveForm.get('expirationdate')?.value,
+      passportissuedby: this.myReactiveForm.get('issuedby')?.value,
+      pannumber: this.myReactiveForm.get('pan')?.value,
+      nameonpan: this.myReactiveForm.get('panname')?.value,
+      aadharnumber: this.myReactiveForm.get('aadhar')?.value,
+      nameonaadhar: this.myReactiveForm.get('aadharname')?.value,
+      qualifications: [
+        {
+          qualification: this.myReactiveForm.get('qualification')?.value,
+          major: this.myReactiveForm.get('major')?.value,
+          institute: this.myReactiveForm.get('institute')?.value,
+          yearofcompletion: this.myReactiveForm.get('year')?.value,
+          stateorcountry: this.myReactiveForm.get('qualificationstate')?.value
+        }
+      ],
+      memberships: [
+        {
+          membership: this.myReactiveForm.get('Membership')?.value,
+          membership_title: this.myReactiveForm.get('OrgMembership')?.value,
+          membership_date: this.myReactiveForm.get('membershipdate')?.value
+        }
+      ],
+      honors: [
+        {
+          honours: this.myReactiveForm.get('honour')?.value,
+          honor_title: this.myReactiveForm.get('honouraward')?.value,
+          granter: this.myReactiveForm.get('grantor')?.value,
+          receivedyear: this.myReactiveForm.get('yearReceived')?.value
+        }
+      ],
+      previousemploymentdetails: [
+        {
+          from: this.myReactiveForm.get('fromyr')?.value,
+          to: this.myReactiveForm.get('toyr')?.value,
+          location: this.myReactiveForm.get('location')?.value,
+          designation: this.myReactiveForm.get('designation')?.value,
+          companyname: this.myReactiveForm.get('companyname')?.value
+        }
+      ],
+      gender: this.myReactiveForm.get('gender')?.value,
+      bloodgroup: this.myReactiveForm.get('BloodGrp')?.value,
+      islivingwithinjury: this.myReactiveForm.get('isInjured')?.value,
+      injurydetails: this.myReactiveForm.get('injuryDetails')?.value,
+      islivingwithillness: this.myReactiveForm.get('isIll')?.value,
+      illnessdetails: this.myReactiveForm.get('illnessDetails')?.value,
+      islivingwithdisability: this.myReactiveForm.get('isDisabled')?.value,
+      disabilitydetails: this.myReactiveForm.get('disabilityDetails')?.value,
+      allergytomedicines: this.myReactiveForm.get('Healthinfo')?.value,
+      medicalalert: this.myReactiveForm.get('isMedicalAlert')?.value
     }
-    //   emergencyname: this.myReactiveForm.get('emergencyName')?.value,
-    //   emergencyrelation: this.myReactiveForm.get('relation')?.value,
-    //   emergencyph1: this.myReactiveForm.get('emergencyphone1')?.value,
-    //   emergencyph2: this.myReactiveForm.get('emergencyphone2')?.value,
-    //   emergencyaddr1: this.myReactiveForm.get('address1')?.value,
-    //   emergencyaddr2: this.myReactiveForm.get('address2')?.value,
-    //   emergencycity: this.myReactiveForm.get('emergencycity')?.value,
-    //   emergencystate: this.myReactiveForm.get('emergencystate')?.value,
-    //   emergencypincode: this.myReactiveForm.get('pin')?.value,
-    //   citizenshipcountry: this.myReactiveForm.get('country')?.value,
-    //   passportnumber: this.myReactiveForm.get('passport')?.value,
-    //   passportissuedate: this.myReactiveForm.get('issueddate')?.value,
-    //   passportexpirydate: this.myReactiveForm.get('expirationdate')?.value,
-    //   passportissuedby: this.myReactiveForm.get('issuedby')?.value,
-    //   pannumber: this.myReactiveForm.get('pan')?.value,
-    //   nameonpan: this.myReactiveForm.get('panname')?.value,
-    //   aadharnumber: this.myReactiveForm.get('aadhar')?.value,
-    //   nameonaadhar: this.myReactiveForm.get('aadharname')?.value,
-    //   qualifications: [
-    //     {
-    //       qualification: this.myReactiveForm.get('qualification')?.value,
-    //       major: this.myReactiveForm.get('major')?.value,
-    //       institute: this.myReactiveForm.get('institute')?.value,
-    //       yearofcompletion: this.myReactiveForm.get('year')?.value,
-    //       stateorcountry: this.myReactiveForm.get('qualificationstate')?.value
-    //     }
-    //   ],
-    //   memberships: [
-    //     {
-    //       membership: this.myReactiveForm.get('Membership')?.value,
-    //       membership_title: this.myReactiveForm.get('OrgMembership')?.value,
-    //       membership_date: this.myReactiveForm.get('membershipdate')?.value
-    //     }
-    //   ],
-    //   honors: [
-    //     {
-    //       honours: this.myReactiveForm.get('honour')?.value,
-    //       honor_title: this.myReactiveForm.get('honouraward')?.value,
-    //       granter: this.myReactiveForm.get('grantor')?.value,
-    //       receivedyear: this.myReactiveForm.get('yearReceived')?.value
-    //     }
-    //   ],
-    //   previousemploymentdetails: [
-    //     {
-    //       from: this.myReactiveForm.get('fromyr')?.value,
-    //       to: this.myReactiveForm.get('toyr')?.value,
-    //       location: this.myReactiveForm.get('location')?.value,
-    //       designation: this.myReactiveForm.get('designation')?.value,
-    //       companyname: this.myReactiveForm.get('companyname')?.value
-    //     }
-    //   ],
-    //   gender: this.myReactiveForm.get('gender')?.value,
-    //   bloodgroup: this.myReactiveForm.get('BloodGrp')?.value,
-    //   islivingwithinjury: this.myReactiveForm.get('isInjured')?.value,
-    //   injurydetails: this.myReactiveForm.get('injuryDetails')?.value,
-    //   islivingwithillness: this.myReactiveForm.get('isIll')?.value,
-    //   illnessdetails: this.myReactiveForm.get('illnessDetails')?.value,
-    //   islivingwithdisability: this.myReactiveForm.get('isDisabled')?.value,
-    //   disabilitydetails: this.myReactiveForm.get('disabilityDetails')?.value,
-    //   allergytomedicines: this.myReactiveForm.get('Healthinfo')?.value,
-    //   medicalalert: this.myReactiveForm.get('isMedicalAlert')?.value
-    // }
   }
 }
 
