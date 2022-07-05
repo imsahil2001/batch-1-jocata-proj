@@ -216,12 +216,10 @@
                 name=""
                 id=""
                 formControlName="currentstate"
-                (change)="getStates()"
+               
               >
                 <option value="" disabled>State</option>
-                <option *ngFor="let state of stateList">
-                  {{ state.name }}
-                </option>
+                
               </select>
               <div
                 class="validation_popup"
@@ -247,9 +245,7 @@
                 formControlName="currentcity"
               >
                 <option value="">City</option>
-                <option *ngFor="let city of cityList" [ngValue]="city">
-                  {{ city }}
-                </option>
+               
               </select>
               <div
                 class="validation_popup"

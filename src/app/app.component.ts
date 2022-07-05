@@ -41,35 +41,10 @@ export class AppComponent implements OnInit {
     'Transgender',
   ];
 
-  cityList: any[] = [];
+
 
   selectedState: any = '';
-  stateList: any = [
-    {
-      id: 1, name: 'Andhra Pradesh'
-    }
-    ,
-    {
-      id: 2, name: 'Arunachal Pradesh'
-    }
-    ,
-    {
-      id: 3, name: 'Assam'
-    }
-    ,
-    {
-      id: 4, name: 'Bihar'
-    }
-    ,
-    {
-      id: 5, name: 'Haryana'
-    }
-    ,
-    {
-      id: 6, name: 'Punjab'
-    }
-    ,
-  ]
+
 
 
 
@@ -444,41 +419,7 @@ export class AppComponent implements OnInit {
     state: 'Lagos',
   };
 
-  getStates() {
 
-    console.log(this.selectedState);
-
-
-
-    let headers = new HttpHeaders({
-      'X-Powered-By': 'Express',
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Headers': '*',
-      'Content-Type': 'application/json',
-      'charset': 'utf-8',
-      'Content-Length': '157',
-      'ETag': 'W/"9d-laheLqB06/2L4F8Bwm6wiZQbEaE"',
-      'Date': 'Sun, 30 May 2021 00:07:39 GMT',
-      'Connection': 'keep-alive',
-    });
-
-    this.obj.state = this.selectedState;
-
-    let options = { headers: headers };
-    this.http
-      .post<any>(
-        'https://countriesnow.space/api/v0.1/countries/state/cities',
-        JSON.stringify(this.obj),
-        options
-      )
-      .subscribe((data: any) => {
-        console.log(data.data);
-        this.cityList.length = 0;
-        this.cityList.push(...data.data);
-        console.log(this.cityList);
-      });
-
-  }
 
   //request payload is made from formGroup 
   makePayLoad() {
