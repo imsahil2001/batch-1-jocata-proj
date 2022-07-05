@@ -19,6 +19,8 @@ export class AppComponent implements OnInit {
   submitted: any = false;
   responsePayload: any = {
     emp_id: '',
+    status: '',
+    stage: ''
   };
 
   // --------------------------------------------
@@ -57,38 +59,38 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     // reactive form
     this.myReactiveForm = new FormGroup({
-      FirstName: new FormControl('', [
+      FirstName: new FormControl(null, [
         Validators.pattern('[A-Za-z]{1,32}'),
         Validators.required,
       ]),
-      MaritalStatus: new FormControl('', [Validators.required]),
-      LastName: new FormControl('', [
+      MaritalStatus: new FormControl(null, [Validators.required]),
+      LastName: new FormControl(null, [
         Validators.pattern('[A-Za-z]{1,32}'),
         Validators.required,
       ]),
       MiddleName: new FormControl(null, [
         Validators.pattern('[A-Za-z]{1,32}'),
       ]),
-      PhoneNumber: new FormControl('', [
+      PhoneNumber: new FormControl(null, [
         Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$'),
         Validators.required,
         Validators.minLength(10),
         Validators.maxLength(10),
       ]),
-      CAddress: new FormControl('', [Validators.required]),
-      CAddress1: new FormControl('', [Validators.required]),
-      PAddress: new FormControl('', [Validators.required]),
-      PAddress1: new FormControl('', [Validators.required]),
-      CPinCode: new FormControl('', [
+      CAddress: new FormControl(null, [Validators.required]),
+      CAddress1: new FormControl(null, [Validators.required]),
+      PAddress: new FormControl(null, [Validators.required]),
+      PAddress1: new FormControl(null, [Validators.required]),
+      CPinCode: new FormControl(null, [
         Validators.pattern('^[1-9][0-9]{5}$'),
         Validators.required,
       ]),
-      PinCode: new FormControl('', [
+      PinCode: new FormControl(null, [
         Validators.pattern('^[1-9][0-9]{5}$'),
         Validators.required,
       ]),
-      Email: new FormControl('', [Validators.required, Validators.email]),
-      DOB: new FormControl('', [
+      Email: new FormControl(null, [Validators.required, Validators.email]),
+      DOB: new FormControl(null, [
         Validators.required,
         Validators.pattern('^(2|1){1}[0-9]{3}.[0-9]{2}.[0-9]{2}.*$'),
       ]),
@@ -100,11 +102,11 @@ export class AppComponent implements OnInit {
         Validators.maxLength(10),
       ]),
 
-      country: new FormControl({ value: '', disabled: true }),
-      passport: new FormControl({ value: '', disabled: true }),
-      issueddate: new FormControl({ value: '', disabled: true }),
-      expirationdate: new FormControl({ value: '', disabled: true }),
-      issuedby: new FormControl({ value: '', disabled: true }),
+      country: new FormControl({ value: null, disabled: true }),
+      passport: new FormControl({ value: null, disabled: true }),
+      issueddate: new FormControl({ value: null, disabled: true }),
+      expirationdate: new FormControl({ value: null, disabled: true }),
+      issuedby: new FormControl({ value: null, disabled: true }),
 
       pan: new FormControl(null, [
         Validators.required,
@@ -123,128 +125,128 @@ export class AppComponent implements OnInit {
       companyname: new FormControl(null, [
         Validators.pattern('^[a-zA-Z][a-zA-Z\\s]+$'),
       ]),
-      fromyr: new FormControl('', [
+      fromyr: new FormControl(null, [
         Validators.required,
         Validators.pattern('[0-9]{4}'),
         Validators.minLength(4),
         Validators.maxLength(4),
       ]),
-      toyr: new FormControl('', [
+      toyr: new FormControl(null, [
         Validators.required,
         Validators.pattern('[0-9]{4}'),
         Validators.minLength(4),
         Validators.maxLength(4),
       ]),
-      designation: new FormControl('', [
+      designation: new FormControl(null, [
         Validators.required,
         Validators.pattern('[A-Za-z]{1,}'),
       ]),
-      location: new FormControl('', [
+      location: new FormControl(null, [
         Validators.required,
         Validators.pattern('[A-Za-z]{1,}'),
       ]),
-      qualification: new FormControl('', [
+      qualification: new FormControl(null, [
         Validators.pattern('[a-zA-Z.{}";_^%$#!~@,-]{1,32}'),
         Validators.required,
       ]),
-      major: new FormControl('', [
+      major: new FormControl(null, [
         Validators.pattern('[a-zA-Z.{}";_^%$#!~@,-]{1,32}'),
         Validators.required,
       ]),
-      Membership: new FormControl('', [
+      Membership: new FormControl(null, [
         Validators.pattern('[A-Za-z]{1,32}'),
         Validators.required,
       ]),
-      OrgMembership: new FormControl('', [
+      OrgMembership: new FormControl(null, [
         Validators.pattern('[A-Za-z]{1,32}'),
         Validators.required,
       ]),
-      membershipdate: new FormControl('', [
+      membershipdate: new FormControl(null, [
         Validators.required,
         Validators.pattern('^(2|1){1}[0-9]{3}.[0-9]{2}.[0-9]{2}.*$'),
       ]),
-      honour: new FormControl('', [
+      honour: new FormControl(null, [
         Validators.pattern('[A-Za-z]{1,32}'),
         Validators.required,
       ]),
-      honouraward: new FormControl('', [
+      honouraward: new FormControl(null, [
         Validators.pattern('[A-Za-z]{1,32}'),
         Validators.required,
       ]),
-      grantor: new FormControl('', [
+      grantor: new FormControl(null, [
         Validators.pattern('[A-Za-z]{1,32}'),
         Validators.required,
       ]),
-      year: new FormControl('', [
+      year: new FormControl(null, [
         Validators.pattern('[0-9]{1,4}'),
         Validators.required,
       ]),
-      currentstate: new FormControl('', [
+      currentstate: new FormControl(null, [
         Validators.pattern('[A-Za-z]{1,32}'),
         Validators.required,
       ]),
-      currentcity: new FormControl('', [
+      currentcity: new FormControl(null, [
         Validators.pattern('[A-Za-z]{1,32}'),
         Validators.required,
       ]),
-      permanentstate: new FormControl('', [
+      permanentstate: new FormControl(null, [
         Validators.pattern('[A-Za-z]{1,32}'),
         Validators.required,
       ]),
-      permanentcity: new FormControl('', [
+      permanentcity: new FormControl(null, [
         Validators.pattern('[A-Za-z]{1,32}'),
         Validators.required,
       ]),
-      institute: new FormControl('', [Validators.required]),
-      yearReceived: new FormControl('', [
+      institute: new FormControl(null, [Validators.required]),
+      yearReceived: new FormControl(null, [
         Validators.pattern('[0-9]{1,4}'),
         Validators.required,
       ]),
-      emergencyName: new FormControl('', [
+      emergencyName: new FormControl(null, [
         Validators.pattern('[A-Za-z]{1,32}'),
         Validators.required,
       ]),
-      relation: new FormControl('', [
+      relation: new FormControl(null, [
         Validators.pattern('[A-Za-z]{1,32}'),
         Validators.required,
       ]), //
-      emergencyphone1: new FormControl('', [
+      emergencyphone1: new FormControl(null, [
         Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$'),
         Validators.required,
         Validators.minLength(10),
         Validators.maxLength(10),
       ]),
-      emergencyphone2: new FormControl('', [
+      emergencyphone2: new FormControl(null, [
         Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$'),
         Validators.required,
         Validators.minLength(10),
         Validators.maxLength(10),
       ]),
-      emergencystate: new FormControl('', [
+      emergencystate: new FormControl(null, [
         Validators.pattern('[A-Za-z]{1,32}'),
         Validators.required,
       ]),
-      qualificationstate: new FormControl('', [
+      qualificationstate: new FormControl(null, [
         Validators.pattern('[A-Za-z]{1,32}'),
         Validators.required,
       ]),
-      emergencycity: new FormControl('', [
+      emergencycity: new FormControl(null, [
         Validators.pattern('[A-Za-z]{1,32}'),
         Validators.required,
       ]),
-      address1: new FormControl('', Validators.required),
-      address2: new FormControl('', Validators.required),
-      pin: new FormControl('', [
+      address1: new FormControl(null, Validators.required),
+      address2: new FormControl(null, Validators.required),
+      pin: new FormControl(null, [
         Validators.pattern('[0-9]{6}'),
         Validators.required,
       ]),
-      gender: new FormControl('', Validators.required),
+      gender: new FormControl(null, Validators.required),
 
       isInjured: new FormControl(false),
       isIll: new FormControl(false),
       isDisabled: new FormControl(false),
       isMedicalAlert: new FormControl(false),
-      BloodGrp: new FormControl('', [
+      BloodGrp: new FormControl(null, [
         Validators.pattern('^(A|B|AB|O)[+-]$'),
         Validators.required,
       ]),
@@ -403,12 +405,14 @@ export class AppComponent implements OnInit {
     // if (this.myReactiveForm.invalid) {
     //   return;
     // }
-
     console.log(this.myReactiveForm.value);
 
     this.responsePayload = this.userservice.savePersonalDetails(
       this.requestPayLoad
     );
+
+
+    console.log(this.responsePayload.emp_id);
 
     sessionStorage.setItem('emp_id', this.responsePayload.emp_id);
     sessionStorage.setItem('stage', 'PERSONAL_INFO');
@@ -424,7 +428,7 @@ export class AppComponent implements OnInit {
   //request payload is made from formGroup 
   makePayLoad() {
     this.requestPayLoad = {
-      empid: "1015",
+      empId: "1",
       fname: this.myReactiveForm.get('FirstName')?.value,
       mname: this.myReactiveForm.get('MiddleName')?.value,
       lname: this.myReactiveForm.get('LastName')?.value,
@@ -450,68 +454,69 @@ export class AppComponent implements OnInit {
           addressType: 'permanent'
         }
       ],
-      emergencyname: this.myReactiveForm.get('emergencyName')?.value,
-      emergencyrelation: this.myReactiveForm.get('relation')?.value,
-      emergencyph1: this.myReactiveForm.get('emergencyphone1')?.value,
-      emergencyph2: this.myReactiveForm.get('emergencyphone2')?.value,
-      emergencyaddr1: this.myReactiveForm.get('address1')?.value,
-      emergencyaddr2: this.myReactiveForm.get('address2')?.value,
-      emergencycity: this.myReactiveForm.get('emergencycity')?.value,
-      emergencystate: this.myReactiveForm.get('emergencystate')?.value,
-      emergencypincode: this.myReactiveForm.get('pin')?.value,
-      citizenshipcountry: this.myReactiveForm.get('country')?.value,
-      passportnumber: this.myReactiveForm.get('passport')?.value,
-      passportissuedate: this.myReactiveForm.get('issueddate')?.value,
-      passportexpirydate: this.myReactiveForm.get('expirationdate')?.value,
-      passportissuedby: this.myReactiveForm.get('issuedby')?.value,
-      pannumber: this.myReactiveForm.get('pan')?.value,
-      nameonpan: this.myReactiveForm.get('panname')?.value,
-      aadharnumber: this.myReactiveForm.get('aadhar')?.value,
-      nameonaadhar: this.myReactiveForm.get('aadharname')?.value,
-      qualifications: [
-        {
-          qualification: this.myReactiveForm.get('qualification')?.value,
-          major: this.myReactiveForm.get('major')?.value,
-          institute: this.myReactiveForm.get('institute')?.value,
-          yearofcompletion: this.myReactiveForm.get('year')?.value,
-          stateorcountry: this.myReactiveForm.get('qualificationstate')?.value
-        }
-      ],
-      memberships: [
-        {
-          membership: this.myReactiveForm.get('Membership')?.value,
-          organizationmembership: this.myReactiveForm.get('OrgMembership')?.value,
-          membershipdate: this.myReactiveForm.get('membershipdate')?.value
-        }
-      ],
-      honors: [
-        {
-          honour: this.myReactiveForm.get('honour')?.value,
-          honourofaward: this.myReactiveForm.get('honouraward')?.value,
-          honourgranter: this.myReactiveForm.get('grantor')?.value,
-          honourreceivedyear: this.myReactiveForm.get('yearReceived')?.value
-        }
-      ],
-      previousemploymentdetails: [
-        {
-          from: this.myReactiveForm.get('fromyr')?.value,
-          to: this.myReactiveForm.get('toyr')?.value,
-          location: this.myReactiveForm.get('location')?.value,
-          designation: this.myReactiveForm.get('designation')?.value,
-          companyname: this.myReactiveForm.get('companyname')?.value
-        }
-      ],
-      gender: this.myReactiveForm.get('gender')?.value,
-      bloodgroup: this.myReactiveForm.get('BloodGrp')?.value,
-      islivingwithinjury: this.myReactiveForm.get('isInjured')?.value,
-      injurydetails: this.myReactiveForm.get('injuryDetails')?.value,
-      islivingwithillness: this.myReactiveForm.get('isIll')?.value,
-      illnessdetails: this.myReactiveForm.get('illnessDetails')?.value,
-      islivingwithdisability: this.myReactiveForm.get('isDisabled')?.value,
-      disabilitydetails: this.myReactiveForm.get('disabilityDetails')?.value,
-      allergytomedicines: this.myReactiveForm.get('Healthinfo')?.value,
-      medicalalert: this.myReactiveForm.get('isMedicalAlert')?.value
     }
+    //   emergencyname: this.myReactiveForm.get('emergencyName')?.value,
+    //   emergencyrelation: this.myReactiveForm.get('relation')?.value,
+    //   emergencyph1: this.myReactiveForm.get('emergencyphone1')?.value,
+    //   emergencyph2: this.myReactiveForm.get('emergencyphone2')?.value,
+    //   emergencyaddr1: this.myReactiveForm.get('address1')?.value,
+    //   emergencyaddr2: this.myReactiveForm.get('address2')?.value,
+    //   emergencycity: this.myReactiveForm.get('emergencycity')?.value,
+    //   emergencystate: this.myReactiveForm.get('emergencystate')?.value,
+    //   emergencypincode: this.myReactiveForm.get('pin')?.value,
+    //   citizenshipcountry: this.myReactiveForm.get('country')?.value,
+    //   passportnumber: this.myReactiveForm.get('passport')?.value,
+    //   passportissuedate: this.myReactiveForm.get('issueddate')?.value,
+    //   passportexpirydate: this.myReactiveForm.get('expirationdate')?.value,
+    //   passportissuedby: this.myReactiveForm.get('issuedby')?.value,
+    //   pannumber: this.myReactiveForm.get('pan')?.value,
+    //   nameonpan: this.myReactiveForm.get('panname')?.value,
+    //   aadharnumber: this.myReactiveForm.get('aadhar')?.value,
+    //   nameonaadhar: this.myReactiveForm.get('aadharname')?.value,
+    //   qualifications: [
+    //     {
+    //       qualification: this.myReactiveForm.get('qualification')?.value,
+    //       major: this.myReactiveForm.get('major')?.value,
+    //       institute: this.myReactiveForm.get('institute')?.value,
+    //       yearofcompletion: this.myReactiveForm.get('year')?.value,
+    //       stateorcountry: this.myReactiveForm.get('qualificationstate')?.value
+    //     }
+    //   ],
+    //   memberships: [
+    //     {
+    //       membership: this.myReactiveForm.get('Membership')?.value,
+    //       membership_title: this.myReactiveForm.get('OrgMembership')?.value,
+    //       membership_date: this.myReactiveForm.get('membershipdate')?.value
+    //     }
+    //   ],
+    //   honors: [
+    //     {
+    //       honours: this.myReactiveForm.get('honour')?.value,
+    //       honor_title: this.myReactiveForm.get('honouraward')?.value,
+    //       granter: this.myReactiveForm.get('grantor')?.value,
+    //       receivedyear: this.myReactiveForm.get('yearReceived')?.value
+    //     }
+    //   ],
+    //   previousemploymentdetails: [
+    //     {
+    //       from: this.myReactiveForm.get('fromyr')?.value,
+    //       to: this.myReactiveForm.get('toyr')?.value,
+    //       location: this.myReactiveForm.get('location')?.value,
+    //       designation: this.myReactiveForm.get('designation')?.value,
+    //       companyname: this.myReactiveForm.get('companyname')?.value
+    //     }
+    //   ],
+    //   gender: this.myReactiveForm.get('gender')?.value,
+    //   bloodgroup: this.myReactiveForm.get('BloodGrp')?.value,
+    //   islivingwithinjury: this.myReactiveForm.get('isInjured')?.value,
+    //   injurydetails: this.myReactiveForm.get('injuryDetails')?.value,
+    //   islivingwithillness: this.myReactiveForm.get('isIll')?.value,
+    //   illnessdetails: this.myReactiveForm.get('illnessDetails')?.value,
+    //   islivingwithdisability: this.myReactiveForm.get('isDisabled')?.value,
+    //   disabilitydetails: this.myReactiveForm.get('disabilityDetails')?.value,
+    //   allergytomedicines: this.myReactiveForm.get('Healthinfo')?.value,
+    //   medicalalert: this.myReactiveForm.get('isMedicalAlert')?.value
+    // }
   }
 }
 
